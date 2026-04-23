@@ -4,348 +4,640 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Portal Corporativo — Accesos Rápidos</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<title>Portal Corporativo</title>
 <style>
-:root{
-  --bg:#0d0f14;--bg2:#13161e;--bg3:#191d28;--bg4:#1e2232;
-  --border:#252a3a;--border2:#2e3448;
-  --accent:#3d7eff;--accent2:#1a4abf;--aglow:rgba(61,126,255,.13);
-  --t1:#dde2f0;--t2:#7c839e;--t3:#3e4358;
-  --r:10px;--sw:234px;--trans:.16s ease;
+/* ── FUENTES EMBEBIDAS (sin depender de internet) ── */
+@import url('data:text/css,');
+
+/* ── VARIABLES ── */
+:root {
+–bg:       #f0f2f7;
+–bg2:      #ffffff;
+–bg3:      #f7f8fc;
+–sidebar:  #1a1f36;
+–sidebar2: #252c47;
+–sidebar3: #2f3759;
+–accent:   #2563eb;
+–accent-l: #eff4ff;
+–t1:       #111827;
+–t2:       #4b5563;
+–t3:       #9ca3af;
+–border:   #e5e7eb;
+–border2:  #d1d5db;
+–sw:       220px;
+–r:        10px;
+–shadow:   0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+–shadow2:  0 4px 20px rgba(0,0,0,.12);
+
+/* colores por tipo */
+–excel-bg:    #f0fdf4; –excel-border: #86efac; –excel-text: #15803d; –excel-icon: #16a34a;
+–word-bg:     #eff6ff; –word-border:  #93c5fd; –word-text:  #1d4ed8; –word-icon:  #2563eb;
+–pdf-bg:      #fff1f2; –pdf-border:   #fca5a5; –pdf-text:   #b91c1c; –pdf-icon:   #dc2626;
+–carpeta-bg:  #fffbeb; –carpeta-border:#fcd34d;–carpeta-text:#b45309;–carpeta-icon:#d97706;
+–link-bg:     #f5f3ff; –link-border:  #c4b5fd; –link-text:  #6d28d9; –link-icon:  #7c3aed;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:14px}
-body{font-family:'Mulish',sans-serif;background:var(--bg);color:var(--t1);display:flex;min-height:100vh;overflow-x:hidden}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-a{text-decoration:none;color:inherit}
-button{font-family:'Mulish',sans-serif;cursor:pointer}
-input,select,textarea{font-family:'Mulish',sans-serif}
 
-/* ── SIDEBAR ── */
-.sidebar{width:var(–sw);min-height:100vh;background:var(–bg2);border-right:1px solid var(–border);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:200;transition:transform var(–trans);overflow-y:auto}
-.sidebar.collapsed{transform:translateX(calc(-1 * var(–sw)))}
-.s-logo{display:flex;align-items:center;gap:10px;padding:20px 18px 18px;border-bottom:1px solid var(–border);flex-shrink:0}
-.s-logo-icon{width:32px;height:32px;background:var(–accent);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.s-logo-icon svg{width:17px;height:17px;color:#fff}
-.s-logo-text{display:flex;flex-direction:column}
-.s-logo-name{font-family:‘Syne’,sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(–t1)}
-.s-logo-sub{font-size:10px;color:var(–t3);margin-top:1px}
-.s-nav{padding:10px 8px;flex:1;display:flex;flex-direction:column;gap:1px}
-.s-divider{font-size:9px;letter-spacing:.15em;color:var(–t3);padding:12px 10px 5px;font-weight:600;font-family:‘IBM Plex Mono’,monospace}
-.nav-btn{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:6px;border:none;background:none;color:var(–t2);font-size:12.5px;transition:background var(–trans),color var(–trans);text-align:left;width:100%}
-.nav-btn svg{width:14px;height:14px;flex-shrink:0;opacity:.7}
-.nav-btn span{flex:1}
-.nav-btn em{font-style:normal;font-size:10px;background:var(–bg);color:var(–t3);border-radius:10px;padding:1px 6px;font-family:‘IBM Plex Mono’,monospace;min-width:20px;text-align:center}
-.nav-btn:hover{background:var(–bg3);color:var(–t1)}
-.nav-btn.active{background:rgba(61,126,255,.13);color:var(–accent);border:1px solid rgba(61,126,255,.25)}
-.nav-btn.active svg{opacity:1}
-.nav-btn.active em{background:rgba(61,126,255,.15);color:var(–accent)}
-.s-footer{padding:14px 18px;border-top:1px solid var(–border);flex-shrink:0;display:flex;flex-direction:column;gap:7px}
-.s-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:6px;border:1px solid var(–border2);background:var(–bg3);color:var(–t2);font-size:12px;transition:all var(–trans);width:100%}
-.s-btn svg{width:13px;height:13px;flex-shrink:0}
-.s-btn:hover{background:var(–bg4);color:var(–t1);border-color:var(–accent)}
-.s-btn.connected{border-color:rgba(26,140,71,.4);color:#1a8c47;background:rgba(26,140,71,.07)}
-.s-btn.connected svg{color:#1a8c47}
-
-/* ── SYNC STATUS BAR ── */
-.sync-bar{
-display:flex;align-items:center;gap:8px;
-padding:7px 24px;font-size:11px;
-border-bottom:1px solid var(–border);
-background:var(–bg2);color:var(–t3);
-font-family:‘IBM Plex Mono’,monospace;
-transition:all var(–trans);
-min-height:34px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+font-family: -apple-system, BlinkMacSystemFont, ‘Segoe UI’, system-ui, sans-serif;
+background: var(–bg);
+color: var(–t1);
+display: flex;
+min-height: 100vh;
+line-height: 1.5;
 }
-.sync-dot{width:7px;height:7px;border-radius:50%;background:var(–t3);flex-shrink:0;transition:background var(–trans)}
-.sync-bar.ok .sync-dot{background:#1a8c47;box-shadow:0 0 6px rgba(26,140,71,.5)}
-.sync-bar.ok{color:#1a8c47;background:rgba(26,140,71,.05);border-bottom-color:rgba(26,140,71,.2)}
-.sync-bar.warn .sync-dot{background:#e6a817}
-.sync-bar.warn{color:#e6a817;background:rgba(230,168,23,.05);border-bottom-color:rgba(230,168,23,.2)}
-.sync-bar.err .sync-dot{background:#e74c3c}
-.sync-bar.err{color:#e74c3c}
-.sync-bar .sync-action{margin-left:auto;background:none;border:1px solid currentColor;border-radius:4px;padding:2px 9px;font-size:10px;color:inherit;font-family:‘IBM Plex Mono’,monospace;cursor:pointer;opacity:.8;transition:opacity var(–trans)}
-.sync-bar .sync-action:hover{opacity:1}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(–border2); border-radius: 3px; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+input, select, textarea { font-family: inherit; }
 
-/* ── MAIN ── */
-.main{flex:1;margin-left:var(–sw);display:flex;flex-direction:column;min-height:100vh;transition:margin var(–trans)}
-.main.expanded{margin-left:0}
-.topbar{display:flex;align-items:center;gap:12px;padding:12px 24px;background:var(–bg2);border-bottom:1px solid var(–border);position:sticky;top:0;z-index:100}
-.menu-btn{display:flex;flex-direction:column;gap:4px;background:none;border:none;padding:5px;border-radius:5px;transition:background var(–trans);flex-shrink:0}
-.menu-btn:hover{background:var(–bg3)}
-.menu-btn span{display:block;width:17px;height:1.5px;background:var(–t2);border-radius:1px}
-.search-box{flex:1;max-width:460px;display:flex;align-items:center;background:var(–bg3);border:1px solid var(–border2);border-radius:7px;padding:0 11px;gap:7px;transition:border var(–trans),box-shadow var(–trans)}
-.search-box:focus-within{border-color:var(–accent);box-shadow:0 0 0 3px var(–aglow)}
-.search-box svg{width:13px;height:13px;color:var(–t3);flex-shrink:0}
-.search-box input{flex:1;background:none;border:none;outline:none;color:var(–t1);font-size:13px;padding:9px 0}
-.search-box input::placeholder{color:var(–t3)}
-.clear-x{background:none;border:none;color:var(–t3);font-size:11px;padding:2px 4px;border-radius:3px;display:none;transition:color var(–trans)}
-.clear-x:hover{color:var(–t1)}
-.clear-x.on{display:block}
-.topbar-date{margin-left:auto;font-family:‘IBM Plex Mono’,monospace;font-size:10.5px;color:var(–t3);letter-spacing:.04em;white-space:nowrap}
-.content{padding:28px 24px;flex:1}
-.page-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;gap:12px;flex-wrap:wrap}
-.page-head h1{font-family:‘Syne’,sans-serif;font-size:18px;font-weight:700;letter-spacing:-.01em}
-.page-head p{font-size:11.5px;color:var(–t3);margin-top:3px}
-.count-badge{font-family:‘IBM Plex Mono’,monospace;font-size:10.5px;color:var(–t3);background:var(–bg3);border:1px solid var(–border);padding:4px 12px;border-radius:20px;white-space:nowrap;align-self:center}
-
-/* ── GRID / CARDS ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:12px}
-.card{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r);display:flex;flex-direction:column;color:var(–t1);cursor:pointer;transition:transform var(–trans),border-color var(–trans),box-shadow var(–trans),background var(–trans);position:relative;overflow:hidden;animation:fadeUp .2s ease both}
-.card::after{content:’’;position:absolute;top:0;left:0;width:3px;height:100%;background:var(–tc,var(–border));opacity:.6;transition:opacity var(–trans)}
-.card:hover{border-color:var(–border2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35);background:var(–bg4)}
-.card:hover::after{opacity:1}
-.c-top{display:flex;align-items:center;justify-content:space-between;padding:13px 14px 8px 16px;gap:8px}
-.c-ico{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(–ib,var(–bg))}
-.c-ico svg{width:17px;height:17px;color:var(–tc,var(–t2))}
-.c-badges{display:flex;gap:5px;align-items:center}
-.c-tipo{font-family:‘IBM Plex Mono’,monospace;font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:3px 7px;border-radius:4px;background:var(–tb,var(–bg));color:var(–tc,var(–t3));border:1px solid var(–tbd,var(–border))}
-.c-star{font-size:11px;color:#f0aa0a}
-.c-body{padding:1px 16px 12px;flex:1}
-.c-name{font-size:13px;font-weight:600;line-height:1.35;margin-bottom:4px}
-.c-desc{font-size:11.5px;color:var(–t2);line-height:1.5}
-.c-foot{display:flex;align-items:center;justify-content:space-between;padding:9px 16px 11px;border-top:1px solid var(–border);gap:8px}
-.c-sector{font-family:‘IBM Plex Mono’,monospace;font-size:10px;color:var(–t3);text-transform:uppercase;letter-spacing:.04em}
-.c-arrow{color:var(–t3);font-size:13px;transition:transform var(–trans),color var(–trans)}
-.card:hover .c-arrow{transform:translateX(3px);color:var(–accent)}
-.t-excel  {–tc:#1a8c47;–tb:rgba(26,140,71,.1);  –tbd:rgba(26,140,71,.28); –ib:rgba(26,140,71,.1)}
-.t-word   {–tc:#4a90d9;–tb:rgba(37,99,168,.1);  –tbd:rgba(37,99,168,.28); –ib:rgba(37,99,168,.1)}
-.t-pdf    {–tc:#e74c3c;–tb:rgba(192,57,43,.1);  –tbd:rgba(192,57,43,.28); –ib:rgba(192,57,43,.1)}
-.t-carpeta{–tc:#e6a817;–tb:rgba(196,125,14,.1); –tbd:rgba(196,125,14,.28);–ib:rgba(196,125,14,.1)}
-.t-link   {–tc:#3d7eff;–tb:rgba(61,126,255,.1); –tbd:rgba(61,126,255,.28);–ib:rgba(61,126,255,.1)}
-.empty{display:none;flex-direction:column;align-items:center;gap:14px;padding:70px 20px;color:var(–t3)}
-.empty svg{width:38px;height:38px;opacity:.35}
-.empty p{font-size:13.5px}
-.empty button{background:var(–bg3);border:1px solid var(–border);color:var(–t2);padding:8px 18px;border-radius:6px;font-size:12.5px;transition:all var(–trans)}
-.empty button:hover{background:var(–bg4);color:var(–t1)}
-
-/* ── MODAL ── */
-.overlay{display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
-.overlay.open{display:flex}
-.config-panel{background:var(–bg2);border:1px solid var(–border2);border-radius:14px;width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-.cp-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(–border);flex-shrink:0}
-.cp-header h2{font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700}
-.cp-header p{font-size:11.5px;color:var(–t3);margin-top:2px}
-.cp-close{background:var(–bg3);border:1px solid var(–border2);color:var(–t2);width:30px;height:30px;border-radius:6px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all var(–trans)}
-.cp-close:hover{background:var(–bg4);color:var(–t1)}
-.cp-tabs{display:flex;border-bottom:1px solid var(–border);padding:0 24px;gap:4px;flex-shrink:0}
-.cp-tab{padding:10px 14px;border:none;background:none;font-size:12.5px;color:var(–t3);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(–trans);font-family:‘Mulish’,sans-serif}
-.cp-tab.active{color:var(–accent);border-bottom-color:var(–accent)}
-.cp-tab:hover{color:var(–t1)}
-.cp-section{display:none;padding:20px 24px 24px;overflow-y:auto}
-.cp-section.active{display:block}
-.acc-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.acc-row{display:flex;align-items:center;gap:8px;background:var(–bg3);border:1px solid var(–border);border-radius:7px;padding:10px 12px;transition:border-color var(–trans)}
-.acc-row:hover{border-color:var(–border2)}
-.acc-row-ico{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
-.acc-row-info{flex:1;min-width:0}
-.acc-row-name{font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-row-sub{font-size:11px;color:var(–t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-row-btns{display:flex;gap:5px;flex-shrink:0}
-.icon-btn{background:none;border:1px solid var(–border);color:var(–t3);width:27px;height:27px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all var(–trans)}
-.icon-btn:hover{background:var(–bg4);color:var(–t1);border-color:var(–border2)}
-.icon-btn.del:hover{border-color:rgba(231,76,60,.4);color:#e74c3c;background:rgba(231,76,60,.08)}
-.add-form{background:var(–bg3);border:1px solid var(–border2);border-radius:8px;padding:18px}
-.add-form h3{font-size:13px;font-weight:600;margin-bottom:14px;color:var(–t1)}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.form-full{grid-column:1/-1}
-.field label{display:block;font-size:10.5px;color:var(–t3);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase;font-weight:600;font-family:‘IBM Plex Mono’,monospace}
-.field input,.field select,.field textarea{width:100%;background:var(–bg2);border:1px solid var(–border2);border-radius:6px;padding:8px 10px;color:var(–t1);font-size:12.5px;outline:none;transition:border var(–trans),box-shadow var(–trans)}
-.field input:focus,.field select:focus{border-color:var(–accent);box-shadow:0 0 0 3px var(–aglow)}
-.field select option{background:var(–bg2)}
-.field .check-row{display:flex;align-items:center;gap:8px;padding:8px 0}
-.field .check-row input[type=checkbox]{width:15px;height:15px;accent-color:var(–accent)}
-.field .check-row label{font-size:12.5px;color:var(–t2);margin:0;text-transform:none;letter-spacing:0;font-family:‘Mulish’,sans-serif}
-.form-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
-.btn-primary{background:var(–accent);border:none;color:#fff;padding:8px 20px;border-radius:6px;font-size:12.5px;font-weight:600;transition:background var(–trans),transform var(–trans)}
-.btn-primary:hover{background:#2d6ae0;transform:translateY(-1px)}
-.btn-secondary{background:var(–bg4);border:1px solid var(–border2);color:var(–t2);padding:8px 16px;border-radius:6px;font-size:12.5px;transition:all var(–trans)}
-.btn-secondary:hover{color:var(–t1);border-color:var(–accent)}
-.sector-list{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.sector-row{display:flex;align-items:center;gap:8px;background:var(–bg3);border:1px solid var(–border);border-radius:6px;padding:9px 12px}
-.sector-row span{flex:1;font-size:12.5px}
-.add-sector-row{display:flex;gap:8px;margin-top:4px}
-.add-sector-row input{flex:1;background:var(–bg3);border:1px solid var(–border2);border-radius:6px;padding:8px 10px;color:var(–t1);font-size:12.5px;outline:none;transition:border var(–trans),box-shadow var(–trans)}
-.add-sector-row input:focus{border-color:var(–accent);box-shadow:0 0 0 3px var(–aglow)}
-
-/* ── CONNECT PANEL ── */
-.connect-box{background:var(–bg3);border:1px solid var(–border2);border-radius:10px;padding:22px;text-align:center}
-.connect-box .cb-icon{font-size:36px;margin-bottom:12px}
-.connect-box h3{font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;margin-bottom:8px}
-.connect-box p{font-size:12px;color:var(–t2);line-height:1.7;margin-bottom:18px;max-width:420px;margin-left:auto;margin-right:auto}
-.connect-box .steps{text-align:left;background:var(–bg2);border:1px solid var(–border);border-radius:7px;padding:14px 16px;margin-bottom:18px;display:flex;flex-direction:column;gap:8px}
-.connect-box .step{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(–t2);line-height:1.5}
-.connect-box .step-n{width:20px;height:20px;border-radius:50%;background:var(–accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.connect-box .compat{font-size:10.5px;color:var(–t3);font-family:‘IBM Plex Mono’,monospace}
-.connected-box{background:rgba(26,140,71,.07);border:1px solid rgba(26,140,71,.3);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
-.cb-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.cb-info{display:flex;align-items:center;gap:10px}
-.cb-dot{width:9px;height:9px;border-radius:50%;background:#1a8c47;box-shadow:0 0 8px rgba(26,140,71,.6);flex-shrink:0}
-.cb-fname{font-size:13px;font-weight:600;color:var(–t1)}
-.cb-fsub{font-size:11px;color:var(–t2)}
-
-.toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(–bg4);border:1px solid var(–border2);border-radius:8px;padding:12px 18px;font-size:12.5px;color:var(–t1);box-shadow:0 8px 28px rgba(0,0,0,.4);transform:translateY(20px);opacity:0;transition:all .22s ease;pointer-events:none;max-width:300px}
-.toast.show{transform:translateY(0);opacity:1}
-.toast.ok{border-left:3px solid #1a8c47}
-.toast.err{border-left:3px solid #e74c3c}
-.toast.warn{border-left:3px solid #e6a817}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:720px){
-.sidebar{transform:translateX(calc(-1 * var(–sw)))}
-.sidebar.open{transform:translateX(0)}
-.main{margin-left:0}
-.content{padding:18px 14px}
-.topbar{padding:10px 14px}
-.topbar-date{display:none}
-.grid{grid-template-columns:1fr}
-.form-grid{grid-template-columns:1fr}
+/* ══════════════════════════════════════
+SIDEBAR
+══════════════════════════════════════ */
+.sidebar {
+width: var(–sw);
+min-height: 100vh;
+background: var(–sidebar);
+display: flex;
+flex-direction: column;
+position: fixed;
+top: 0; left: 0;
+z-index: 200;
+transition: transform .2s ease;
+overflow-y: auto;
 }
-@media(min-width:721px){
-.sidebar.collapsed{transform:translateX(calc(-1 * var(–sw)))}
-.main.expanded{margin-left:0}
+.sidebar.collapsed { transform: translateX(calc(-1 * var(–sw))); }
+
+.s-logo {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 20px 16px;
+border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.s-logo-mark {
+width: 34px; height: 34px;
+background: var(–accent);
+border-radius: 8px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+}
+.s-logo-mark svg { width: 18px; height: 18px; color: #fff; }
+.s-logo-name { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .04em; }
+.s-logo-sub  { font-size: 10px; color: rgba(255,255,255,.4); margin-top: 1px; }
+
+.s-nav { padding: 12px 8px; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.s-label {
+font-size: 9.5px; font-weight: 700; letter-spacing: .12em;
+color: rgba(255,255,255,.3); padding: 12px 10px 5px;
+text-transform: uppercase;
+}
+.nav-btn {
+display: flex; align-items: center; gap: 9px;
+padding: 8px 10px; border-radius: 7px; border: none;
+background: none; color: rgba(255,255,255,.55);
+font-size: 13px; text-align: left; width: 100%;
+transition: background .15s, color .15s;
+}
+.nav-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.nav-btn span { flex: 1; }
+.nav-btn em {
+font-style: normal; font-size: 10px;
+background: rgba(255,255,255,.08);
+color: rgba(255,255,255,.4);
+border-radius: 20px; padding: 1px 7px;
+min-width: 22px; text-align: center;
+}
+.nav-btn:hover { background: rgba(255,255,255,.08); color: #fff; }
+.nav-btn.active {
+background: var(–accent); color: #fff;
+box-shadow: 0 2px 8px rgba(37,99,235,.4);
+}
+.nav-btn.active em { background: rgba(255,255,255,.2); color: #fff; }
+
+.s-footer {
+padding: 12px 8px;
+border-top: 1px solid rgba(255,255,255,.08);
+}
+.s-footer-btn {
+display: flex; align-items: center; gap: 8px;
+padding: 8px 10px; border-radius: 7px;
+border: 1px solid rgba(255,255,255,.12);
+background: rgba(255,255,255,.05);
+color: rgba(255,255,255,.55); font-size: 12px;
+width: 100%; transition: all .15s;
+}
+.s-footer-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+.s-footer-btn:hover { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.2); }
+
+/* ══════════════════════════════════════
+MAIN
+══════════════════════════════════════ */
+.main {
+flex: 1;
+margin-left: var(–sw);
+display: flex; flex-direction: column;
+min-height: 100vh;
+transition: margin .2s ease;
+}
+.main.expanded { margin-left: 0; }
+
+/* TOPBAR */
+.topbar {
+display: flex; align-items: center; gap: 12px;
+padding: 0 24px; height: 56px;
+background: var(–bg2);
+border-bottom: 1px solid var(–border);
+position: sticky; top: 0; z-index: 100;
+box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+.menu-btn {
+display: flex; flex-direction: column; gap: 4px;
+background: none; border: none; padding: 6px;
+border-radius: 6px; transition: background .15s;
+}
+.menu-btn:hover { background: var(–bg3); }
+.menu-btn span { display: block; width: 18px; height: 2px; background: var(–t2); border-radius: 1px; }
+
+.search-wrap {
+flex: 1; max-width: 400px;
+display: flex; align-items: center; gap: 8px;
+background: var(–bg3); border: 1.5px solid var(–border);
+border-radius: 8px; padding: 0 12px;
+transition: border .15s, box-shadow .15s;
+}
+.search-wrap:focus-within {
+border-color: var(–accent);
+box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+.search-wrap svg { width: 14px; height: 14px; color: var(–t3); flex-shrink: 0; }
+.search-wrap input {
+flex: 1; background: none; border: none; outline: none;
+color: var(–t1); font-size: 13px; padding: 9px 0;
+}
+.search-wrap input::placeholder { color: var(–t3); }
+.clear-btn {
+background: none; border: none; color: var(–t3);
+font-size: 12px; padding: 2px 4px; display: none;
+border-radius: 3px; transition: color .15s;
+}
+.clear-btn:hover { color: var(–t1); }
+.clear-btn.on { display: block; }
+
+.topbar-date {
+margin-left: auto;
+font-size: 11.5px; color: var(–t3);
+white-space: nowrap;
+}
+
+/* CONTENT */
+.content { padding: 24px; flex: 1; }
+
+.page-head {
+display: flex; justify-content: space-between;
+align-items: flex-start; margin-bottom: 20px;
+gap: 12px; flex-wrap: wrap;
+}
+.page-head h1 { font-size: 20px; font-weight: 700; color: var(–t1); }
+.page-head p  { font-size: 12.5px; color: var(–t3); margin-top: 2px; }
+.count-pill {
+font-size: 11.5px; color: var(–t2);
+background: var(–bg2); border: 1.5px solid var(–border);
+padding: 5px 14px; border-radius: 20px;
+white-space: nowrap; align-self: center; font-weight: 500;
+}
+
+/* ══════════════════════════════════════
+GRID DE TARJETAS
+══════════════════════════════════════ */
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 14px;
+}
+
+/* ── TARJETA ── */
+.card {
+background: var(–bg2);
+border: 1.5px solid var(–border);
+border-radius: var(–r);
+display: flex; flex-direction: column;
+cursor: pointer; color: var(–t1);
+transition: transform .15s, box-shadow .15s, border-color .15s;
+animation: fadeUp .2s ease both;
+overflow: hidden;
+position: relative;
+}
+.card:hover {
+transform: translateY(-3px);
+box-shadow: var(–shadow2);
+border-color: var(–card-accent, var(–border2));
+}
+
+/* barra de color superior según tipo */
+.card-bar {
+height: 4px;
+background: var(–card-accent, var(–border));
+flex-shrink: 0;
+}
+
+.card-top {
+display: flex; align-items: flex-start;
+justify-content: space-between;
+padding: 14px 14px 8px;
+gap: 8px;
+}
+.card-ico {
+width: 40px; height: 40px; border-radius: 9px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+background: var(–card-ico-bg, var(–bg3));
+}
+.card-ico svg { width: 20px; height: 20px; color: var(–card-ico-color, var(–t2)); }
+
+.card-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.card-tipo {
+font-size: 10px; font-weight: 700; letter-spacing: .06em;
+text-transform: uppercase; padding: 3px 8px;
+border-radius: 20px;
+background: var(–card-tag-bg, var(–bg3));
+color: var(–card-tag-color, var(–t3));
+border: 1px solid var(–card-tag-border, var(–border));
+}
+.card-star { color: #f59e0b; font-size: 14px; line-height: 1; }
+
+.card-body { padding: 2px 14px 12px; flex: 1; }
+.card-name {
+font-size: 13.5px; font-weight: 700;
+color: var(–t1); line-height: 1.35; margin-bottom: 5px;
+}
+.card-desc { font-size: 12px; color: var(–t2); line-height: 1.55; }
+
+.card-foot {
+display: flex; align-items: center; justify-content: space-between;
+padding: 10px 14px;
+border-top: 1px solid var(–border);
+background: var(–bg3);
+}
+.card-sector {
+font-size: 11px; color: var(–t3); font-weight: 600;
+text-transform: uppercase; letter-spacing: .04em;
+}
+.card-arrow {
+width: 22px; height: 22px; border-radius: 5px;
+background: var(–card-tag-bg, var(–bg));
+display: flex; align-items: center; justify-content: center;
+transition: background .15s, transform .15s;
+}
+.card-arrow svg { width: 12px; height: 12px; color: var(–card-tag-color, var(–t3)); }
+.card:hover .card-arrow { background: var(–card-accent, var(–border)); }
+.card:hover .card-arrow svg { color: #fff; }
+
+/* ── COLORES POR TIPO ── */
+.t-excel   { –card-accent:#16a34a; –card-ico-bg:#f0fdf4; –card-ico-color:#16a34a; –card-tag-bg:#f0fdf4; –card-tag-color:#15803d; –card-tag-border:#86efac; }
+.t-word    { –card-accent:#2563eb; –card-ico-bg:#eff6ff; –card-ico-color:#2563eb; –card-tag-bg:#eff6ff; –card-tag-color:#1d4ed8; –card-tag-border:#93c5fd; }
+.t-pdf     { –card-accent:#dc2626; –card-ico-bg:#fff1f2; –card-ico-color:#dc2626; –card-tag-bg:#fff1f2; –card-tag-color:#b91c1c; –card-tag-border:#fca5a5; }
+.t-carpeta { –card-accent:#d97706; –card-ico-bg:#fffbeb; –card-ico-color:#d97706; –card-tag-bg:#fffbeb; –card-tag-color:#b45309; –card-tag-border:#fcd34d; }
+.t-link    { –card-accent:#7c3aed; –card-ico-bg:#f5f3ff; –card-ico-color:#7c3aed; –card-tag-bg:#f5f3ff; –card-tag-color:#6d28d9; –card-tag-border:#c4b5fd; }
+
+/* ── EMPTY ── */
+.empty {
+display: none; flex-direction: column; align-items: center;
+gap: 12px; padding: 80px 20px; color: var(–t3);
+}
+.empty svg { width: 40px; height: 40px; opacity: .3; }
+.empty p { font-size: 14px; }
+.empty button {
+background: var(–bg2); border: 1.5px solid var(–border);
+color: var(–t2); padding: 8px 20px; border-radius: 7px;
+font-size: 13px; font-weight: 500; transition: all .15s;
+}
+.empty button:hover { border-color: var(–accent); color: var(–accent); }
+
+/* ══════════════════════════════════════
+MODAL CONFIGURACIÓN
+══════════════════════════════════════ */
+.overlay {
+display: none; position: fixed; inset: 0; z-index: 400;
+background: rgba(0,0,0,.5); backdrop-filter: blur(3px);
+align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.open { display: flex; }
+
+.modal {
+background: var(–bg2); border-radius: 14px;
+width: 100%; max-width: 820px; max-height: 90vh;
+display: flex; flex-direction: column;
+box-shadow: 0 20px 60px rgba(0,0,0,.2);
+border: 1.5px solid var(–border);
+}
+.modal-head {
+display: flex; align-items: center; justify-content: space-between;
+padding: 18px 24px; border-bottom: 1px solid var(–border);
+flex-shrink: 0;
+}
+.modal-head h2 { font-size: 16px; font-weight: 700; }
+.modal-head p  { font-size: 12px; color: var(–t3); margin-top: 2px; }
+.modal-close {
+width: 30px; height: 30px; border-radius: 7px;
+background: var(–bg3); border: 1.5px solid var(–border);
+color: var(–t2); font-size: 16px;
+display: flex; align-items: center; justify-content: center;
+transition: all .15s;
+}
+.modal-close:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+
+.modal-tabs {
+display: flex; border-bottom: 1px solid var(–border);
+padding: 0 24px; gap: 0; flex-shrink: 0;
+}
+.m-tab {
+padding: 11px 16px; border: none; background: none;
+font-size: 13px; color: var(–t3); font-weight: 500;
+border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+transition: all .15s;
+}
+.m-tab.active { color: var(–accent); border-bottom-color: var(–accent); }
+.m-tab:hover { color: var(–t1); }
+
+.modal-body { flex: 1; overflow-y: auto; }
+.m-section { display: none; padding: 20px 24px 24px; }
+.m-section.active { display: block; }
+
+/* Formulario */
+.form-card {
+background: var(–bg3); border: 1.5px solid var(–border);
+border-radius: 10px; padding: 18px; margin-bottom: 20px;
+}
+.form-card h3 { font-size: 13.5px; font-weight: 700; margin-bottom: 14px; color: var(–t1); }
+.fg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fg-full { grid-column: 1/-1; }
+.field label {
+display: block; font-size: 11px; font-weight: 700;
+color: var(–t2); margin-bottom: 5px; letter-spacing: .04em;
+text-transform: uppercase;
+}
+.field input, .field select {
+width: 100%; background: var(–bg2);
+border: 1.5px solid var(–border2); border-radius: 7px;
+padding: 8px 10px; color: var(–t1); font-size: 13px;
+outline: none; transition: border .15s, box-shadow .15s;
+}
+.field input:focus, .field select:focus {
+border-color: var(–accent);
+box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+}
+.field .chk { display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+.field .chk input { width: 15px; height: 15px; accent-color: var(–accent); }
+.field .chk label { font-size: 13px; color: var(–t2); margin: 0; text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+.btn-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+.btn-p {
+background: var(–accent); border: none; color: #fff;
+padding: 9px 22px; border-radius: 7px; font-size: 13px; font-weight: 600;
+transition: background .15s, transform .15s;
+}
+.btn-p:hover { background: #1d4ed8; transform: translateY(-1px); }
+.btn-s {
+background: var(–bg2); border: 1.5px solid var(–border2);
+color: var(–t2); padding: 9px 16px; border-radius: 7px;
+font-size: 13px; font-weight: 500; transition: all .15s;
+}
+.btn-s:hover { border-color: var(–accent); color: var(–accent); }
+
+/* Lista accesos */
+.list-head {
+display: flex; align-items: center; justify-content: space-between;
+margin-bottom: 10px;
+}
+.list-label { font-size: 11px; font-weight: 700; color: var(–t3); text-transform: uppercase; letter-spacing: .06em; }
+.list-filter {
+background: var(–bg3); border: 1.5px solid var(–border);
+border-radius: 6px; padding: 6px 10px; color: var(–t1);
+font-size: 12px; outline: none; width: 160px;
+transition: border .15s;
+}
+.list-filter:focus { border-color: var(–accent); }
+
+.acc-list { display: flex; flex-direction: column; gap: 6px; }
+.acc-row {
+display: flex; align-items: center; gap: 10px;
+background: var(–bg3); border: 1.5px solid var(–border);
+border-radius: 8px; padding: 10px 12px;
+transition: border-color .15s;
+}
+.acc-row:hover { border-color: var(–border2); }
+.acc-ico {
+width: 30px; height: 30px; border-radius: 7px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0; font-size: 15px;
+}
+.acc-info { flex: 1; min-width: 0; }
+.acc-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.acc-sub  { font-size: 11px; color: var(–t3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+.acc-btns { display: flex; gap: 5px; flex-shrink: 0; }
+.ic-btn {
+width: 28px; height: 28px; border-radius: 6px;
+background: var(–bg2); border: 1.5px solid var(–border);
+color: var(–t3); display: flex; align-items: center;
+justify-content: center; font-size: 12px;
+transition: all .15s;
+}
+.ic-btn:hover { background: var(–bg3); color: var(–t1); border-color: var(–border2); }
+.ic-btn.del:hover { background: #fff1f2; border-color: #fca5a5; color: #dc2626; }
+
+/* Sectores */
+.sec-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.sec-row {
+display: flex; align-items: center; gap: 8px;
+background: var(–bg3); border: 1.5px solid var(–border);
+border-radius: 7px; padding: 9px 12px;
+}
+.sec-row span { flex: 1; font-size: 13px; font-weight: 500; }
+.sec-add { display: flex; gap: 8px; }
+.sec-add input {
+flex: 1; background: var(–bg2); border: 1.5px solid var(–border2);
+border-radius: 7px; padding: 8px 10px; color: var(–t1);
+font-size: 13px; outline: none; transition: border .15s, box-shadow .15s;
+}
+.sec-add input:focus { border-color: var(–accent); box-shadow: 0 0 0 3px rgba(37,99,235,.1); }
+
+/* Toast */
+.toast {
+position: fixed; bottom: 20px; right: 20px; z-index: 999;
+background: var(–t1); color: #fff;
+border-radius: 8px; padding: 11px 18px; font-size: 13px;
+box-shadow: 0 4px 20px rgba(0,0,0,.2);
+transform: translateY(16px); opacity: 0;
+transition: all .2s ease; pointer-events: none;
+display: flex; align-items: center; gap: 8px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.ok  { background: #15803d; }
+.toast.err { background: #dc2626; }
+.toast.warn{ background: #d97706; }
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(8px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+.sidebar { transform: translateX(calc(-1 * var(–sw))); }
+.sidebar.open { transform: translateX(0); }
+.main { margin-left: 0; }
+.content { padding: 16px; }
+.topbar { padding: 0 14px; }
+.topbar-date { display: none; }
+.grid { grid-template-columns: 1fr; }
+.fg { grid-template-columns: 1fr; }
+}
+@media (min-width: 701px) {
+.sidebar.collapsed { transform: translateX(calc(-1 * var(–sw))); }
+.main.expanded { margin-left: 0; }
 }
 </style>
 
 </head>
 <body>
 
-<!-- SIDEBAR -->
+<!-- ══ SIDEBAR ══ -->
 
 <aside class="sidebar" id="sidebar">
   <div class="s-logo">
-    <div class="s-logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+    <div class="s-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+      </svg>
     </div>
-    <div class="s-logo-text">
-      <span class="s-logo-name">PORTAL</span>
-      <span class="s-logo-sub">Accesos Corporativos</span>
+    <div>
+      <div class="s-logo-name">PORTAL</div>
+      <div class="s-logo-sub">Accesos Corporativos</div>
     </div>
   </div>
+
   <nav class="s-nav" id="sideNav">
-    <button class="nav-btn active" data-sector="todos" onclick="setFiltro('todos',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <button class="nav-btn active" onclick="setFiltro('todos',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       <span>Todos</span><em id="cnt-todos">0</em>
     </button>
-    <button class="nav-btn" data-sector="destacados" onclick="setFiltro('destacados',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <span>Destacados</span><em id="cnt-destacados">0</em>
+    <button class="nav-btn" onclick="setFiltro('destacados',this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>Destacados</span><em id="cnt-dest">0</em>
     </button>
-    <div class="s-divider">SECTORES</div>
+    <div class="s-label">Sectores</div>
     <div id="sectorNav"></div>
   </nav>
+
   <div class="s-footer">
-    <button class="s-btn" id="syncBtn" onclick="abrirConfig('sincronizacion')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      <span id="syncBtnLabel">Conectar carpeta</span>
-    </button>
-    <button class="s-btn" onclick="abrirConfig('accesos')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+    <button class="s-footer-btn" onclick="abrirModal('accesos')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
       Configurar accesos
     </button>
   </div>
 </aside>
 
-<!-- MAIN -->
+<!-- ══ MAIN ══ -->
 
 <main class="main" id="main">
   <header class="topbar">
-    <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
-    <div class="search-box">
+    <button class="menu-btn" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="search-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input id="buscador" type="text" placeholder="Buscar por nombre, sector, tipo…" oninput="onSearch(this.value)"/>
-      <button class="clear-x" id="clearX" onclick="clearSearch()">✕</button>
+      <input id="buscador" type="text" placeholder="Buscar acceso, sector, tipo…" oninput="onSearch(this.value)"/>
+      <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
     </div>
     <div class="topbar-date" id="topDate"></div>
   </header>
-
-  <!-- SYNC STATUS BAR -->
-
-  <div class="sync-bar" id="syncBar">
-    <div class="sync-dot"></div>
-    <span id="syncMsg">Sin carpeta conectada — los datos se guardan en este navegador.</span>
-    <button class="sync-action" id="syncAction" onclick="abrirConfig('sincronizacion')" style="display:none"></button>
-  </div>
 
   <div class="content">
     <div class="page-head">
       <div>
         <h1 id="vTitle">Todos los accesos</h1>
-        <p id="vSub">Navegá por sector o usá el buscador.</p>
+        <p id="vSub">Seleccioná un sector o usá el buscador.</p>
       </div>
-      <span class="count-badge" id="vCount">0 accesos</span>
+      <span class="count-pill" id="vCount">0 accesos</span>
     </div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <p>Sin resultados.</p>
+      <p>Sin resultados para tu búsqueda.</p>
       <button onclick="clearSearch()">Limpiar búsqueda</button>
     </div>
   </div>
 </main>
 
-<!-- OVERLAY CONFIG -->
+<!-- ══ MODAL ══ -->
 
 <div class="overlay" id="overlay" onclick="overlayClick(event)">
-  <div class="config-panel" id="configPanel">
-    <div class="cp-header">
-      <div>
-        <h2>⚙ Configuración del Portal</h2>
-        <p>Agregá, editá o eliminá accesos. Los cambios se guardan automáticamente.</p>
-      </div>
-      <button class="cp-close" onclick="cerrarConfig()">✕</button>
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2>⚙ Configuración</h2><p>Agregá, editá o eliminá accesos y sectores.</p></div>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
     </div>
-    <div class="cp-tabs">
-      <button class="cp-tab active" id="tab-btn-accesos" onclick="cpTab('accesos',this)">Accesos</button>
-      <button class="cp-tab" id="tab-btn-sectores" onclick="cpTab('sectores',this)">Sectores</button>
-      <button class="cp-tab" id="tab-btn-sincronizacion" onclick="cpTab('sincronizacion',this)">📁 Carpeta local</button>
+    <div class="modal-tabs">
+      <button class="m-tab active" id="tab-btn-accesos" onclick="mTab('accesos',this)">Accesos</button>
+      <button class="m-tab" id="tab-btn-sectores" onclick="mTab('sectores',this)">Sectores</button>
     </div>
+    <div class="modal-body">
 
 ```
-<!-- TAB ACCESOS -->
-<div class="cp-section active" id="tab-accesos">
-  <div class="add-form" id="addForm">
-    <h3 id="addFormTitle">➕ Nuevo acceso</h3>
-    <div class="form-grid">
-      <div class="field"><label>Nombre</label><input id="f-nombre" type="text" placeholder="Ej: Plan Mensual"/></div>
-      <div class="field"><label>Sector</label><select id="f-sector"></select></div>
-      <div class="field form-full"><label>URL / Enlace</label><input id="f-url" type="text" placeholder="https://empresa.sharepoint.com/..."/></div>
-      <div class="field"><label>Tipo de archivo</label>
-        <select id="f-tipo"><option value="excel">Excel</option><option value="word">Word</option><option value="pdf">PDF</option><option value="carpeta">Carpeta</option><option value="link">Enlace</option></select>
+  <!-- TAB ACCESOS -->
+  <div class="m-section active" id="tab-accesos">
+    <div class="form-card">
+      <h3 id="fTitle">➕ Nuevo acceso</h3>
+      <div class="fg">
+        <div class="field"><label>Nombre</label><input id="f-nombre" placeholder="Ej: Plan de Producción Mensual"/></div>
+        <div class="field"><label>Sector</label><select id="f-sector"></select></div>
+        <div class="field fg-full"><label>URL del archivo o carpeta</label><input id="f-url" placeholder="https://empresa.sharepoint.com/..."/></div>
+        <div class="field">
+          <label>Tipo</label>
+          <select id="f-tipo">
+            <option value="excel">📗 Excel</option>
+            <option value="word">📘 Word</option>
+            <option value="pdf">📕 PDF</option>
+            <option value="carpeta">📁 Carpeta</option>
+            <option value="link">🔗 Enlace</option>
+          </select>
+        </div>
+        <div class="field"><label>Descripción</label><input id="f-desc" placeholder="Breve descripción del contenido"/></div>
+        <div class="field fg-full">
+          <div class="chk">
+            <input type="checkbox" id="f-dest"/>
+            <label for="f-dest">Marcar como Destacado ⭐</label>
+          </div>
+        </div>
       </div>
-      <div class="field"><label>Descripción</label><input id="f-desc" type="text" placeholder="Breve descripción"/></div>
-      <div class="field form-full"><div class="check-row"><input type="checkbox" id="f-dest"/><label for="f-dest">Marcar como Destacado ★</label></div></div>
+      <div class="btn-row">
+        <button class="btn-s" id="cancelBtn" onclick="cancelEdit()" style="display:none">Cancelar</button>
+        <button class="btn-p" onclick="guardarAcceso()"><span id="saveLabel">Guardar acceso</span></button>
+      </div>
     </div>
-    <div class="form-btns">
-      <button class="btn-secondary" id="cancelEditBtn" onclick="cancelEdit()" style="display:none">Cancelar</button>
-      <button class="btn-primary" id="addSaveBtn" onclick="guardarAcceso()">Guardar acceso</button>
-    </div>
-  </div>
-  <div style="margin-top:18px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-      <span style="font-size:11px;color:var(--t3);font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;text-transform:uppercase">Accesos guardados</span>
-      <input id="filterList" type="text" placeholder="Filtrar lista…" oninput="renderAccList(this.value)"
-        style="background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:5px 9px;color:var(--t1);font-size:11.5px;outline:none;width:160px"/>
+
+    <div class="list-head">
+      <span class="list-label">Accesos guardados</span>
+      <input class="list-filter" placeholder="Filtrar…" oninput="renderAccList(this.value)"/>
     </div>
     <div class="acc-list" id="accList"></div>
   </div>
-</div>
 
-<!-- TAB SECTORES -->
-<div class="cp-section" id="tab-sectores">
-  <p style="font-size:12px;color:var(--t2);margin-bottom:16px">Los sectores aparecen en el menú lateral.</p>
-  <div class="sector-list" id="sectorList"></div>
-  <div class="add-sector-row">
-    <input id="nuevoSector" type="text" placeholder="Nuevo sector…" onkeydown="if(event.key==='Enter')addSector()"/>
-    <button class="btn-primary" onclick="addSector()">Agregar</button>
+  <!-- TAB SECTORES -->
+  <div class="m-section" id="tab-sectores">
+    <p style="font-size:12.5px;color:var(--t2);margin-bottom:16px">Administrá los sectores que aparecen en el menú lateral.</p>
+    <div class="sec-list" id="secList"></div>
+    <div class="sec-add">
+      <input id="newSec" placeholder="Nombre del nuevo sector…" onkeydown="if(event.key==='Enter')addSector()"/>
+      <button class="btn-p" onclick="addSector()">Agregar</button>
+    </div>
   </div>
-</div>
 
-<!-- TAB SINCRONIZACIÓN -->
-<div class="cp-section" id="tab-sincronizacion">
-  <div id="connectView"></div>
 </div>
 ```
 
@@ -355,504 +647,310 @@ min-height:34px;
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════════════════
-// DATOS Y ESTADO
-// ══════════════════════════════════════════════════════════
-const DATOS_DEFAULT = [
-  {id:1, sector:"Producción",    nombre:"Plan de Producción Mensual",       desc:"Planilla Excel con el cronograma y metas del mes.",        tipo:"excel",   url:"#", dest:true},
-  {id:2, sector:"Producción",    nombre:"Registro de Órdenes de Trabajo",   desc:"Historial de órdenes activas e históricas de planta.",     tipo:"excel",   url:"#", dest:false},
-  {id:3, sector:"Mantenimiento", nombre:"Plan de Mantenimiento Preventivo", desc:"Calendario anual de mantenimientos programados.",          tipo:"excel",   url:"#", dest:true},
-  {id:4, sector:"Mantenimiento", nombre:"Manual de Equipos",                desc:"PDF con manuales técnicos de los equipos principales.",   tipo:"pdf",     url:"#", dest:false},
-  {id:5, sector:"Compras",       nombre:"Solicitudes de Compra Activas",    desc:"Planilla de seguimiento de solicitudes pendientes.",       tipo:"excel",   url:"#", dest:true},
-  {id:6, sector:"Compras",       nombre:"Listado de Proveedores",           desc:"Base de datos de proveedores habilitados.",               tipo:"word",    url:"#", dest:false},
-  {id:7, sector:"Compras",       nombre:"Carpeta Contratos",                desc:"Directorio con contratos vigentes de proveedores.",       tipo:"carpeta", url:"#", dest:false},
-  {id:8, sector:"Ingeniería",    nombre:"Planos de Planta",                 desc:"Carpeta con planos actualizados de instalaciones.",       tipo:"carpeta", url:"#", dest:true},
-  {id:9, sector:"Ingeniería",    nombre:"Especificaciones Técnicas",        desc:"Documento con especificaciones de proyectos en curso.",   tipo:"word",    url:"#", dest:false},
-  {id:10,sector:"RRHH",          nombre:"Liquidaciones de Sueldo",          desc:"Carpeta con recibos de sueldo mensuales del personal.",   tipo:"carpeta", url:"#", dest:false},
-  {id:11,sector:"RRHH",          nombre:"Reglamento Interno",               desc:"PDF con el reglamento interno de la empresa vigente.",    tipo:"pdf",     url:"#", dest:true},
-  {id:12,sector:"RRHH",          nombre:"Planilla de Asistencia",           desc:"Registro mensual de asistencia del personal.",           tipo:"excel",   url:"#", dest:false},
-  {id:13,sector:"Calidad",       nombre:"Procedimientos ISO",               desc:"Carpeta con procedimientos del sistema de gestión.",     tipo:"carpeta", url:"#", dest:true},
-  {id:14,sector:"Calidad",       nombre:"Registro de No Conformidades",     desc:"Planilla Excel de seguimiento de no conformidades.",     tipo:"excel",   url:"#", dest:false},
-  {id:15,sector:"Administración",nombre:"Presupuesto Anual",                desc:"Excel con el presupuesto corporativo del ejercicio.",    tipo:"excel",   url:"#", dest:true},
-  {id:16,sector:"Administración",nombre:"Carpeta Facturación",              desc:"Directorio con facturas emitidas y recibidas del mes.", tipo:"carpeta", url:"#", dest:false},
-  {id:17,sector:"Administración",nombre:"Informe de Gestión",               desc:"PDF con el informe de gestión trimestral.",             tipo:"pdf",     url:"#", dest:false},
+// ══ DATOS ══════════════════════════════════════════════════
+const DEFAULT_LINKS = [
+  {id:1,  sector:"Producción",    nombre:"Plan de Producción Mensual",       desc:"Planilla Excel con cronograma y metas del mes.",          tipo:"excel",   url:"#", dest:true},
+  {id:2,  sector:"Producción",    nombre:"Registro de Órdenes de Trabajo",   desc:"Historial de órdenes activas e históricas de planta.",    tipo:"excel",   url:"#", dest:false},
+  {id:3,  sector:"Mantenimiento", nombre:"Plan de Mantenimiento Preventivo", desc:"Calendario anual de mantenimientos programados.",         tipo:"excel",   url:"#", dest:true},
+  {id:4,  sector:"Mantenimiento", nombre:"Manual de Equipos",                desc:"PDF con manuales técnicos de los equipos principales.",  tipo:"pdf",     url:"#", dest:false},
+  {id:5,  sector:"Compras",       nombre:"Solicitudes de Compra Activas",    desc:"Seguimiento de solicitudes pendientes de aprobación.",    tipo:"excel",   url:"#", dest:true},
+  {id:6,  sector:"Compras",       nombre:"Listado de Proveedores",           desc:"Base de datos de proveedores habilitados.",               tipo:"word",    url:"#", dest:false},
+  {id:7,  sector:"Compras",       nombre:"Carpeta Contratos",                desc:"Directorio con contratos vigentes de proveedores.",       tipo:"carpeta", url:"#", dest:false},
+  {id:8,  sector:"Ingeniería",    nombre:"Planos de Planta",                 desc:"Carpeta con planos actualizados de instalaciones.",       tipo:"carpeta", url:"#", dest:true},
+  {id:9,  sector:"Ingeniería",    nombre:"Especificaciones Técnicas",        desc:"Documento con especificaciones de proyectos en curso.",   tipo:"word",    url:"#", dest:false},
+  {id:10, sector:"RRHH",          nombre:"Liquidaciones de Sueldo",          desc:"Carpeta con recibos de sueldo mensuales.",               tipo:"carpeta", url:"#", dest:false},
+  {id:11, sector:"RRHH",          nombre:"Reglamento Interno",               desc:"PDF con el reglamento interno de la empresa.",           tipo:"pdf",     url:"#", dest:true},
+  {id:12, sector:"RRHH",          nombre:"Planilla de Asistencia",           desc:"Registro mensual de asistencia del personal.",           tipo:"excel",   url:"#", dest:false},
+  {id:13, sector:"Calidad",       nombre:"Procedimientos ISO",               desc:"Carpeta con procedimientos del sistema de gestión.",     tipo:"carpeta", url:"#", dest:true},
+  {id:14, sector:"Calidad",       nombre:"Registro de No Conformidades",     desc:"Excel de seguimiento de no conformidades abiertas.",     tipo:"excel",   url:"#", dest:false},
+  {id:15, sector:"Administración",nombre:"Presupuesto Anual",                desc:"Excel con el presupuesto corporativo del ejercicio.",    tipo:"excel",   url:"#", dest:true},
+  {id:16, sector:"Administración",nombre:"Carpeta Facturación",              desc:"Facturas emitidas y recibidas del mes.",                 tipo:"carpeta", url:"#", dest:false},
+  {id:17, sector:"Administración",nombre:"Informe de Gestión",               desc:"PDF con el informe de gestión trimestral.",              tipo:"pdf",     url:"#", dest:false},
 ];
-const SECTORES_DEFAULT = ["Producción","Mantenimiento","Compras","Ingeniería","RRHH","Calidad","Administración"];
-const FILE_NAME = "portal_datos.json";
+const DEFAULT_SECTORES = ["Producción","Mantenimiento","Compras","Ingeniería","RRHH","Calidad","Administración"];
 
-let links    = lsLoad('portal_links',   DATOS_DEFAULT);
-let sectores = lsLoad('portal_sectores',SECTORES_DEFAULT);
+let links    = lsGet('p_links',    DEFAULT_LINKS);
+let sectores = lsGet('p_sectores', DEFAULT_SECTORES);
 let filtro   = 'todos';
 let busqueda = '';
 let editId   = null;
 
-// File System Access API
-let fileHandle = null;
-let fsaSupported = ('showSaveFilePicker' in window);
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){return d} }
+function lsSave(){ try{ localStorage.setItem('p_links',JSON.stringify(links)); localStorage.setItem('p_sectores',JSON.stringify(sectores)); }catch(e){} }
 
-// ══════════════════════════════════════════════════════════
-// PERSISTENCIA — localStorage + archivo
-// ══════════════════════════════════════════════════════════
-function lsLoad(k, def){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):def; }catch(e){return def} }
-function lsSave(){ 
-  try{ 
-    localStorage.setItem('portal_links', JSON.stringify(links)); 
-    localStorage.setItem('portal_sectores', JSON.stringify(sectores)); 
-  }catch(e){}
-}
-function dataAsJSON(){ return JSON.stringify({sectores, links}, null, 2); }
-
-// Guardar en archivo (si hay handle conectado)
-async function fileSave(){
-  if(!fileHandle) return;
-  try{
-    const writable = await fileHandle.createWritable();
-    await writable.write(dataAsJSON());
-    await writable.close();
-    setSyncStatus('ok', `Guardado en <strong>${fileHandle.name}</strong> — ${horaActual()}`);
-  } catch(e){
-    setSyncStatus('warn', 'No se pudo guardar en el archivo. Datos guardados en el navegador.');
-    console.warn(e);
-  }
-}
-
-// Guardar en ambos lados
-async function saveAll(){
-  lsSave();
-  await fileSave();
-}
-
-// ══════════════════════════════════════════════════════════
-// FILE SYSTEM ACCESS API
-// ══════════════════════════════════════════════════════════
-
-// Botón "Conectar carpeta": elegir o crear el archivo de datos
-async function conectarCarpeta(){
-  if(!fsaSupported){
-    toast('Tu navegador no soporta esta función. Usá Chrome o Edge en PC.','err');
-    return;
-  }
-  try{
-    // Intentar abrir archivo existente primero
-    const [handle] = await window.showOpenFilePicker({
-      types:[{description:'Portal JSON', accept:{'application/json':['.json']}}],
-      multiple: false
-    });
-    fileHandle = handle;
-    await cargarDesdeArchivo();
-    lsSave();
-    setSyncStatus('ok', `Conectado a <strong>${fileHandle.name}</strong> — cargado correctamente`);
-    updateSyncBtn();
-    renderConnectView();
-    toast('Carpeta conectada. Los cambios se guardarán automáticamente.','ok');
-  } catch(e){
-    if(e.name !== 'AbortError') toast('No se pudo abrir el archivo.','err');
-  }
-}
-
-// Crear archivo nuevo en la carpeta elegida
-async function crearArchivoNuevo(){
-  if(!fsaSupported){ toast('Usá Chrome o Edge en PC.','err'); return; }
-  try{
-    fileHandle = await window.showSaveFilePicker({
-      suggestedName: FILE_NAME,
-      types:[{description:'Portal JSON', accept:{'application/json':['.json']}}]
-    });
-    await fileSave();
-    updateSyncBtn();
-    renderConnectView();
-    toast('Archivo creado y conectado. Los cambios se guardarán automáticamente.','ok');
-  } catch(e){
-    if(e.name !== 'AbortError') toast('No se pudo crear el archivo.','err');
-  }
-}
-
-// Leer datos desde el archivo conectado
-async function cargarDesdeArchivo(){
-  if(!fileHandle) return;
-  try{
-    const file = await fileHandle.getFile();
-    const text = await file.text();
-    const data = JSON.parse(text);
-    if(data.links    && Array.isArray(data.links))    links    = data.links;
-    if(data.sectores && Array.isArray(data.sectores)) sectores = data.sectores;
-    refreshAll();
-  } catch(e){
-    toast('El archivo no tiene el formato correcto.','err');
-    console.warn(e);
-  }
-}
-
-// Desconectar
-function desconectar(){
-  if(!confirm('¿Desconectás el archivo? Los datos quedan guardados en el navegador.')) return;
-  fileHandle = null;
-  setSyncStatus('', 'Sin carpeta conectada — los datos se guardan en este navegador.');
-  updateSyncBtn();
-  renderConnectView();
-  toast('Carpeta desconectada.','warn');
-}
-
-// ══════════════════════════════════════════════════════════
-// SYNC STATUS BAR
-// ══════════════════════════════════════════════════════════
-function setSyncStatus(type, msg){
-  const bar = document.getElementById('syncBar');
-  const msgEl = document.getElementById('syncMsg');
-  const act = document.getElementById('syncAction');
-  bar.className = 'sync-bar' + (type ? ' '+type : '');
-  msgEl.innerHTML = msg;
-  if(type === '' || type === 'ok'){
-    act.style.display = 'none';
-  } else {
-    act.style.display = 'inline-block';
-    act.textContent = 'Ver';
-  }
-}
-
-function updateSyncBtn(){
-  const btn   = document.getElementById('syncBtn');
-  const label = document.getElementById('syncBtnLabel');
-  if(fileHandle){
-    btn.classList.add('connected');
-    label.textContent = fileHandle.name;
-  } else {
-    btn.classList.remove('connected');
-    label.textContent = 'Conectar carpeta';
-  }
-}
-
-function horaActual(){
-  return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-}
-
-// ══════════════════════════════════════════════════════════
-// ÍCONOS
-// ══════════════════════════════════════════════════════════
-const ICONS={
-  excel:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
-  word:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><line x1="8" y1="9" x2="10" y2="9"/></svg>`,
-  pdf:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="18" x2="11" y2="18"/></svg>`,
-  carpeta:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`,
-  link:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+// ── ÍCONOS ──
+const ICONS = {
+  excel:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
+  word:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><line x1="8" y1="9" x2="10" y2="9"/></svg>`,
+  pdf:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="18" x2="11" y2="18"/></svg>`,
+  carpeta: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`,
+  link:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
 };
-const ETIQ={excel:'Excel',word:'Word',pdf:'PDF',carpeta:'Carpeta',link:'Enlace'};
-const EMOJI={excel:'📗',word:'📘',pdf:'📕',carpeta:'📁',link:'🔗'};
+const LABEL = {excel:'Excel', word:'Word', pdf:'PDF', carpeta:'Carpeta', link:'Enlace'};
+const EMOJI = {excel:'📗', word:'📘', pdf:'📕', carpeta:'📁', link:'🔗'};
+const ARROW_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
 
-// ══════════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════════
-window.addEventListener('DOMContentLoaded',()=>{
+// ── INIT ──
+window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('topDate').textContent =
-    new Date().toLocaleDateString('es-AR',{weekday:'short',year:'numeric',month:'short',day:'numeric'}).toUpperCase();
-  if(!fsaSupported){
-    setSyncStatus('warn','Tu navegador no soporta guardado automático. Usá Chrome o Edge en PC para esa función.');
-  }
+    new Date().toLocaleDateString('es-AR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
   refreshAll();
 });
 
-function refreshAll(){
+function refreshAll() {
   buildSectorNav();
   updateCounters();
   renderGrid();
   renderAccList('');
-  renderSectorList();
-  populateSectorSelect();
+  renderSecList();
+  fillSectorSelect();
 }
 
-// ══════════════════════════════════════════════════════════
-// SECTOR NAV
-// ══════════════════════════════════════════════════════════
-function buildSectorNav(){
-  document.getElementById('sectorNav').innerHTML = sectores.map(s=>`
-    <button class="nav-btn${filtro===s?' active':''}" data-sector="${s}" onclick="setFiltro('${s.replace(/'/g,"\\'")}',this)">
-      ${sectorSVG(s)}<span>${s}</span><em id="cnt-${cssId(s)}">0</em>
+// ── SECTOR NAV ──
+const SECTOR_ICONS = {
+  'Producción':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l4-4 4 4 4-6 4 6v10"/></svg>`,
+  'Mantenimiento': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+  'Compras':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+  'Ingeniería':    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+  'RRHH':          `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  'Calidad':       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  'Administración':`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+};
+const DEFAULT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>`;
+
+function buildSectorNav() {
+  document.getElementById('sectorNav').innerHTML = sectores.map(s => `
+    <button class="nav-btn${filtro===s?' active':''}" onclick="setFiltro('${s.replace(/'/g,"\\'")}',this)">
+      ${SECTOR_ICONS[s]||DEFAULT_ICON}
+      <span>${s}</span>
+      <em id="cnt-${sid(s)}">0</em>
     </button>`).join('');
 }
-function cssId(s){ return s.replace(/[^a-z0-9]/gi,'_') }
-function sectorSVG(s){
-  const map={'Producción':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V10l4-4 4 4 4-6 4 6v10"/></svg>','Mantenimiento':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>','Compras':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>','Ingeniería':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>','RRHH':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>','Calidad':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>','Administración':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'};
-  return map[s]||'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/></svg>';
-}
+function sid(s){ return s.replace(/[^a-z0-9]/gi,'_'); }
 
-// ══════════════════════════════════════════════════════════
-// CONTADORES
-// ══════════════════════════════════════════════════════════
-function updateCounters(){
-  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+function updateCounters() {
+  const set = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
   set('cnt-todos', links.length);
-  set('cnt-destacados', links.filter(l=>l.dest).length);
-  sectores.forEach(s=>{
-    set('cnt-'+cssId(s), links.filter(l=>l.sector===s).length);
-  });
+  set('cnt-dest',  links.filter(l=>l.dest).length);
+  sectores.forEach(s => set('cnt-'+sid(s), links.filter(l=>l.sector===s).length));
 }
 
-// ══════════════════════════════════════════════════════════
-// FILTROS Y BÚSQUEDA
-// ══════════════════════════════════════════════════════════
-function setFiltro(s, btn){
-  filtro=s; busqueda='';
-  document.getElementById('buscador').value='';
-  document.getElementById('clearX').classList.remove('on');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+// ── FILTROS ──
+function setFiltro(s, btn) {
+  filtro = s; busqueda = '';
+  document.getElementById('buscador').value = '';
+  document.getElementById('clearBtn').classList.remove('on');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   if(btn) btn.classList.add('active');
-  const T={'todos':['Todos los accesos','Navegá por sector o usá el buscador.'],'destacados':['Accesos Destacados','Los accesos marcados como favoritos.']};
-  const [tit,sub]=T[s]||[`Sector — ${s}`,`Recursos del área de ${s}.`];
-  document.getElementById('vTitle').textContent=tit;
-  document.getElementById('vSub').textContent=sub;
+  const T = {
+    todos:       ['Todos los accesos',    'Seleccioná un sector o usá el buscador.'],
+    destacados:  ['Accesos Destacados',   'Los accesos marcados como favoritos.'],
+  };
+  const [t,p] = T[s] || [`Sector — ${s}`, `Recursos del área de ${s}.`];
+  document.getElementById('vTitle').textContent = t;
+  document.getElementById('vSub').textContent   = p;
   renderGrid();
 }
-function onSearch(v){
-  busqueda=v.toLowerCase().trim();
-  document.getElementById('clearX').classList.toggle('on',v.length>0);
+function onSearch(v) {
+  busqueda = v.toLowerCase().trim();
+  document.getElementById('clearBtn').classList.toggle('on', v.length > 0);
   renderGrid();
 }
-function clearSearch(){
-  busqueda=''; document.getElementById('buscador').value='';
-  document.getElementById('clearX').classList.remove('on');
+function clearSearch() {
+  busqueda = ''; document.getElementById('buscador').value = '';
+  document.getElementById('clearBtn').classList.remove('on');
   renderGrid();
 }
 
-// ══════════════════════════════════════════════════════════
-// RENDER GRID
-// ══════════════════════════════════════════════════════════
-function renderGrid(){
-  let lista=[...links];
-  if(filtro==='destacados') lista=lista.filter(l=>l.dest);
-  else if(filtro!=='todos') lista=lista.filter(l=>l.sector===filtro);
-  if(busqueda) lista=lista.filter(l=>
-    l.nombre.toLowerCase().includes(busqueda)||
-    l.sector.toLowerCase().includes(busqueda)||
-    (l.desc||'').toLowerCase().includes(busqueda)||
+// ── RENDER GRID ──
+function renderGrid() {
+  let list = [...links];
+  if(filtro === 'destacados') list = list.filter(l => l.dest);
+  else if(filtro !== 'todos') list = list.filter(l => l.sector === filtro);
+  if(busqueda) list = list.filter(l =>
+    l.nombre.toLowerCase().includes(busqueda) ||
+    l.sector.toLowerCase().includes(busqueda) ||
+    (l.desc||'').toLowerCase().includes(busqueda) ||
     l.tipo.toLowerCase().includes(busqueda));
-  const grid=document.getElementById('grid');
-  const empty=document.getElementById('empty');
-  document.getElementById('vCount').textContent=lista.length===1?'1 acceso':`${lista.length} accesos`;
-  if(!lista.length){grid.innerHTML='';empty.style.display='flex';return}
-  empty.style.display='none';
-  grid.innerHTML=lista.map((l,i)=>{
-    const t=l.tipo||'link';
-    const delay=((i%12)*0.028).toFixed(2);
-    const target=l.url&&l.url!=='#'?'target="_blank" rel="noopener noreferrer"':'onclick="return false"';
-    return `<a class="card t-${t}" href="${l.url||'#'}" ${target} style="animation-delay:${delay}s">
-      <div class="c-top"><div class="c-ico">${ICONS[t]||ICONS.link}</div>
-      <div class="c-badges"><span class="c-tipo">${ETIQ[t]||t}</span>${l.dest?'<span class="c-star">★</span>':''}</div></div>
-      <div class="c-body"><div class="c-name">${l.nombre}</div><div class="c-desc">${l.desc||''}</div></div>
-      <div class="c-foot"><span class="c-sector">${l.sector}</span><span class="c-arrow">→</span></div>
+
+  const grid  = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  document.getElementById('vCount').textContent = list.length === 1 ? '1 acceso' : `${list.length} accesos`;
+
+  if(!list.length) { grid.innerHTML = ''; empty.style.display = 'flex'; return; }
+  empty.style.display = 'none';
+
+  grid.innerHTML = list.map((l, i) => {
+    const t = l.tipo || 'link';
+    const target = l.url && l.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : 'onclick="return false"';
+    return `<a class="card t-${t}" href="${l.url||'#'}" ${target} style="animation-delay:${(i%12*0.03).toFixed(2)}s">
+      <div class="card-bar"></div>
+      <div class="card-top">
+        <div class="card-ico">${ICONS[t]||ICONS.link}</div>
+        <div class="card-meta">
+          <span class="card-tipo">${LABEL[t]||t}</span>
+          ${l.dest ? '<span class="card-star">⭐</span>' : ''}
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${l.nombre}</div>
+        <div class="card-desc">${l.desc||''}</div>
+      </div>
+      <div class="card-foot">
+        <span class="card-sector">${l.sector}</span>
+        <span class="card-arrow">${ARROW_SVG}</span>
+      </div>
     </a>`;
   }).join('');
 }
 
-// ══════════════════════════════════════════════════════════
-// SIDEBAR TOGGLE
-// ══════════════════════════════════════════════════════════
-function toggleSidebar(){
-  const sb=document.getElementById('sidebar'), mn=document.getElementById('main');
-  if(window.innerWidth<=720){sb.classList.toggle('open')}
-  else{sb.classList.toggle('collapsed');mn.classList.toggle('expanded')}
+// ── SIDEBAR ──
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const mn = document.getElementById('main');
+  if(window.innerWidth <= 700) { sb.classList.toggle('open'); }
+  else { sb.classList.toggle('collapsed'); mn.classList.toggle('expanded'); }
 }
-document.addEventListener('click',e=>{
-  const sb=document.getElementById('sidebar');
-  if(window.innerWidth<=720&&sb.classList.contains('open'))
-    if(!sb.contains(e.target)&&!e.target.closest('.menu-btn'))sb.classList.remove('open');
+document.addEventListener('click', e => {
+  const sb = document.getElementById('sidebar');
+  if(window.innerWidth <= 700 && sb.classList.contains('open'))
+    if(!sb.contains(e.target) && !e.target.closest('.menu-btn')) sb.classList.remove('open');
 });
 
-// ══════════════════════════════════════════════════════════
-// CONFIG PANEL
-// ══════════════════════════════════════════════════════════
-function abrirConfig(tab='accesos'){
-  renderAccList('');
-  renderSectorList();
-  renderConnectView();
+// ── MODAL ──
+function abrirModal(tab='accesos') {
+  renderAccList(''); renderSecList();
   document.getElementById('overlay').classList.add('open');
-  // Activar tab correcto
-  document.querySelectorAll('.cp-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.cp-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById('tab-btn-'+tab).classList.add('active');
-  document.getElementById('tab-'+tab).classList.add('active');
+  mTab(tab, document.getElementById('tab-btn-'+tab));
 }
-function cerrarConfig(){ document.getElementById('overlay').classList.remove('open') }
-function overlayClick(e){ if(e.target===document.getElementById('overlay'))cerrarConfig() }
-function cpTab(name,btn){
-  document.querySelectorAll('.cp-tab').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.cp-section').forEach(s=>s.classList.remove('active'));
+function cerrarModal() { document.getElementById('overlay').classList.remove('open'); }
+function overlayClick(e) { if(e.target === document.getElementById('overlay')) cerrarModal(); }
+function mTab(name, btn) {
+  document.querySelectorAll('.m-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.m-section').forEach(s => s.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
-  if(name==='sincronizacion') renderConnectView();
 }
 
-// ══════════════════════════════════════════════════════════
-// VISTA CONEXIÓN
-// ══════════════════════════════════════════════════════════
-function renderConnectView(){
-  const el = document.getElementById('connectView');
-  if(fileHandle){
-    el.innerHTML=`
-      <div class="connected-box">
-        <div class="cb-row">
-          <div class="cb-info">
-            <div class="cb-dot"></div>
-            <div><div class="cb-fname">📄 ${fileHandle.name}</div>
-            <div class="cb-fsub">Conectado — los cambios se guardan automáticamente en este archivo.</div></div>
-          </div>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn-primary" onclick="cargarDesdeArchivo().then(()=>toast('Datos recargados desde el archivo.','ok'))">⟳ Recargar desde archivo</button>
-          <button class="btn-secondary" onclick="desconectar()">Desconectar</button>
-        </div>
-        <div style="font-size:11px;color:var(--t3);line-height:1.6;margin-top:4px">
-          Para usarlo en otro equipo: copiá el archivo <strong>${fileHandle.name}</strong> a esa PC, abrí el portal y conectá ese mismo archivo desde esta pantalla.
-        </div>
-      </div>`;
-  } else {
-    const noSupport = !fsaSupported;
-    el.innerHTML=`
-      <div class="connect-box">
-        <div class="cb-icon">📁</div>
-        <h3>Conectar una carpeta local</h3>
-        <p>Vinculá el portal con un archivo <code style="font-family:'IBM Plex Mono',monospace;font-size:11px;background:var(--bg3);padding:1px 5px;border-radius:3px">portal_datos.json</code> guardado en tu carpeta de OneDrive o donde quieras. A partir de ahí, cada cambio se guarda automáticamente en ese archivo.</p>
-        <div class="steps">
-          <div class="step"><div class="step-n">1</div><div>Hacé clic en <strong>Crear archivo nuevo</strong> si es la primera vez, o en <strong>Abrir archivo existente</strong> si ya tenés uno de otra PC.</div></div>
-          <div class="step"><div class="step-n">2</div><div>Elegí la carpeta donde querés guardar el archivo (por ejemplo, tu carpeta de OneDrive de la empresa).</div></div>
-          <div class="step"><div class="step-n">3</div><div>Listo. Cada vez que hagas un cambio, se guarda solo. En otra PC: copiá el archivo ahí y conectalo de la misma forma.</div></div>
-        </div>
-        ${noSupport
-          ? `<div style="background:rgba(231,76,60,.08);border:1px solid rgba(231,76,60,.3);border-radius:7px;padding:12px;font-size:12px;color:#e74c3c;margin-bottom:14px">⚠ Tu navegador no soporta esta función. Abrí el portal en <strong>Chrome</strong> o <strong>Edge</strong> en una PC con Windows.</div>`
-          : ''}
-        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-          <button class="btn-primary" onclick="crearArchivoNuevo()" ${noSupport?'disabled style="opacity:.4;cursor:not-allowed"':''}>📄 Crear archivo nuevo</button>
-          <button class="btn-secondary" onclick="conectarCarpeta()" ${noSupport?'disabled style="opacity:.4;cursor:not-allowed"':''}>📂 Abrir archivo existente</button>
-        </div>
-        <div class="compat" style="margin-top:16px">Compatible: Chrome 86+, Edge 86+ en Windows/Mac · No disponible en Firefox ni móvil</div>
-      </div>`;
-  }
+// ── FORMULARIO ──
+function fillSectorSelect() {
+  const sel = document.getElementById('f-sector');
+  const cur = sel.value;
+  sel.innerHTML = sectores.map(s => `<option value="${s}">${s}</option>`).join('');
+  if(cur && sectores.includes(cur)) sel.value = cur;
 }
-
-// ══════════════════════════════════════════════════════════
-// FORMULARIO ACCESOS
-// ══════════════════════════════════════════════════════════
-function populateSectorSelect(){
-  const sel=document.getElementById('f-sector');
-  const cur=sel.value;
-  sel.innerHTML=sectores.map(s=>`<option value="${s}">${s}</option>`).join('');
-  if(cur&&sectores.includes(cur)) sel.value=cur;
-}
-async function guardarAcceso(){
-  const nombre=document.getElementById('f-nombre').value.trim();
-  const url   =document.getElementById('f-url').value.trim();
-  const sector=document.getElementById('f-sector').value;
-  const tipo  =document.getElementById('f-tipo').value;
-  const desc  =document.getElementById('f-desc').value.trim();
-  const dest  =document.getElementById('f-dest').checked;
-  if(!nombre){toast('Ingresá un nombre.','err');return}
-  if(!url){toast('Ingresá la URL del acceso.','err');return}
-  if(editId!==null){
-    const idx=links.findIndex(l=>l.id===editId);
-    if(idx>-1) links[idx]={...links[idx],nombre,url,sector,tipo,desc,dest};
-    editId=null;
-    document.getElementById('addFormTitle').textContent='➕ Nuevo acceso';
-    document.getElementById('addSaveBtn').textContent='Guardar acceso';
-    document.getElementById('cancelEditBtn').style.display='none';
+function guardarAcceso() {
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const url    = document.getElementById('f-url').value.trim();
+  const sector = document.getElementById('f-sector').value;
+  const tipo   = document.getElementById('f-tipo').value;
+  const desc   = document.getElementById('f-desc').value.trim();
+  const dest   = document.getElementById('f-dest').checked;
+  if(!nombre) { toast('Ingresá un nombre.','err'); return; }
+  if(!url)    { toast('Ingresá la URL del acceso.','err'); return; }
+  if(editId !== null) {
+    const idx = links.findIndex(l => l.id === editId);
+    if(idx > -1) links[idx] = {...links[idx], nombre, url, sector, tipo, desc, dest};
+    editId = null;
+    document.getElementById('fTitle').textContent = '➕ Nuevo acceso';
+    document.getElementById('saveLabel').textContent = 'Guardar acceso';
+    document.getElementById('cancelBtn').style.display = 'none';
     toast('Acceso actualizado.','ok');
   } else {
-    const newId=links.length?Math.max(...links.map(l=>l.id))+1:1;
-    links.push({id:newId,sector,nombre,desc,tipo,url,dest});
+    const id = links.length ? Math.max(...links.map(l=>l.id))+1 : 1;
+    links.push({id, sector, nombre, desc, tipo, url, dest});
     toast('Acceso agregado.','ok');
   }
-  clearForm();
-  await saveAll();
-  refreshAll();
+  clearForm(); lsSave(); refreshAll();
 }
-function clearForm(){
-  ['f-nombre','f-url','f-desc'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('f-tipo').value='excel';
-  document.getElementById('f-dest').checked=false;
+function clearForm() {
+  ['f-nombre','f-url','f-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-tipo').value = 'excel';
+  document.getElementById('f-dest').checked = false;
 }
-function editarAcceso(id){
-  const l=links.find(x=>x.id===id); if(!l)return;
-  editId=id;
-  document.getElementById('f-nombre').value=l.nombre;
-  document.getElementById('f-url').value=l.url;
-  document.getElementById('f-sector').value=l.sector;
-  document.getElementById('f-tipo').value=l.tipo;
-  document.getElementById('f-desc').value=l.desc||'';
-  document.getElementById('f-dest').checked=!!l.dest;
-  document.getElementById('addFormTitle').textContent='✏ Editando acceso';
-  document.getElementById('addSaveBtn').textContent='Actualizar';
-  document.getElementById('cancelEditBtn').style.display='inline-flex';
-  document.getElementById('addForm').scrollIntoView({behavior:'smooth'});
+function editarAcceso(id) {
+  const l = links.find(x => x.id === id); if(!l) return;
+  editId = id;
+  document.getElementById('f-nombre').value = l.nombre;
+  document.getElementById('f-url').value    = l.url;
+  document.getElementById('f-sector').value = l.sector;
+  document.getElementById('f-tipo').value   = l.tipo;
+  document.getElementById('f-desc').value   = l.desc||'';
+  document.getElementById('f-dest').checked = !!l.dest;
+  document.getElementById('fTitle').textContent    = '✏ Editando acceso';
+  document.getElementById('saveLabel').textContent = 'Actualizar';
+  document.getElementById('cancelBtn').style.display = 'inline-flex';
+  document.getElementById('addForm') && document.getElementById('addForm').scrollIntoView({behavior:'smooth'});
+  document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});
 }
-function cancelEdit(){
-  editId=null; clearForm();
-  document.getElementById('addFormTitle').textContent='➕ Nuevo acceso';
-  document.getElementById('addSaveBtn').textContent='Guardar acceso';
-  document.getElementById('cancelEditBtn').style.display='none';
+function cancelEdit() {
+  editId = null; clearForm();
+  document.getElementById('fTitle').textContent    = '➕ Nuevo acceso';
+  document.getElementById('saveLabel').textContent = 'Guardar acceso';
+  document.getElementById('cancelBtn').style.display = 'none';
 }
-async function eliminarAcceso(id){
-  if(!confirm('¿Eliminás este acceso?'))return;
-  links=links.filter(l=>l.id!==id);
-  await saveAll(); refreshAll(); toast('Acceso eliminado.','ok');
+function eliminarAcceso(id) {
+  if(!confirm('¿Eliminás este acceso?')) return;
+  links = links.filter(l => l.id !== id);
+  lsSave(); refreshAll(); toast('Acceso eliminado.','ok');
 }
-function renderAccList(q){
-  const f=(q||'').toLowerCase();
-  const list=document.getElementById('accList');
-  let visible=links;
-  if(f) visible=links.filter(l=>l.nombre.toLowerCase().includes(f)||l.sector.toLowerCase().includes(f));
-  if(!visible.length){list.innerHTML='<div style="font-size:12px;color:var(--t3);text-align:center;padding:20px">Sin resultados.</div>';return}
-  list.innerHTML=visible.map(l=>`
+function renderAccList(q) {
+  const f = (q||'').toLowerCase();
+  const list = document.getElementById('accList');
+  let vis = f ? links.filter(l => l.nombre.toLowerCase().includes(f) || l.sector.toLowerCase().includes(f)) : links;
+  if(!vis.length) { list.innerHTML = '<div style="font-size:12.5px;color:var(--t3);text-align:center;padding:20px">Sin resultados.</div>'; return; }
+  list.innerHTML = vis.map(l => `
     <div class="acc-row">
-      <div class="acc-row-ico t-${l.tipo}" style="background:var(--tb);color:var(--tc)">${EMOJI[l.tipo]||'🔗'}</div>
-      <div class="acc-row-info">
-        <div class="acc-row-name">${l.nombre} ${l.dest?'★':''}</div>
-        <div class="acc-row-sub">${l.sector} · ${ETIQ[l.tipo]||l.tipo}</div>
+      <div class="acc-ico t-${l.tipo}" style="background:var(--card-ico-bg,#f3f4f6)">${EMOJI[l.tipo]||'🔗'}</div>
+      <div class="acc-info">
+        <div class="acc-name">${l.nombre} ${l.dest?'⭐':''}</div>
+        <div class="acc-sub">${l.sector} · ${LABEL[l.tipo]||l.tipo}</div>
       </div>
-      <div class="acc-row-btns">
-        <button class="icon-btn" onclick="editarAcceso(${l.id})" title="Editar">✏</button>
-        <button class="icon-btn del" onclick="eliminarAcceso(${l.id})" title="Eliminar">🗑</button>
+      <div class="acc-btns">
+        <button class="ic-btn" onclick="editarAcceso(${l.id})" title="Editar">✏</button>
+        <button class="ic-btn del" onclick="eliminarAcceso(${l.id})" title="Eliminar">🗑</button>
       </div>
     </div>`).join('');
 }
 
-// ══════════════════════════════════════════════════════════
-// SECTORES
-// ══════════════════════════════════════════════════════════
-function renderSectorList(){
-  document.getElementById('sectorList').innerHTML=sectores.map((s,i)=>`
-    <div class="sector-row">
+// ── SECTORES ──
+function renderSecList() {
+  document.getElementById('secList').innerHTML = sectores.map((s,i) => `
+    <div class="sec-row">
       <span>${s}</span>
       <div style="display:flex;gap:5px">
-        ${i>0?`<button class="icon-btn" onclick="moverSector(${i},-1)">↑</button>`:''}
-        ${i<sectores.length-1?`<button class="icon-btn" onclick="moverSector(${i},1)">↓</button>`:''}
-        <button class="icon-btn del" onclick="eliminarSector('${s.replace(/'/g,"\\'")}')">🗑</button>
+        ${i>0 ? `<button class="ic-btn" onclick="moverSec(${i},-1)">↑</button>` : ''}
+        ${i<sectores.length-1 ? `<button class="ic-btn" onclick="moverSec(${i},1)">↓</button>` : ''}
+        <button class="ic-btn del" onclick="eliminarSec('${s.replace(/'/g,"\\'")}')">🗑</button>
       </div>
     </div>`).join('');
 }
-async function addSector(){
-  const v=document.getElementById('nuevoSector').value.trim();
-  if(!v)return;
-  if(sectores.includes(v)){toast('Ese sector ya existe.','err');return}
-  sectores.push(v); document.getElementById('nuevoSector').value='';
-  await saveAll(); refreshAll(); toast('Sector agregado.','ok');
+function addSector() {
+  const v = document.getElementById('newSec').value.trim();
+  if(!v) return;
+  if(sectores.includes(v)) { toast('Ese sector ya existe.','err'); return; }
+  sectores.push(v); document.getElementById('newSec').value = '';
+  lsSave(); refreshAll(); toast('Sector agregado.','ok');
 }
-async function eliminarSector(s){
-  const uso=links.filter(l=>l.sector===s).length;
-  if(uso&&!confirm(`El sector "${s}" tiene ${uso} acceso(s). ¿Eliminás igual?`))return;
-  sectores=sectores.filter(x=>x!==s);
-  await saveAll(); refreshAll(); toast('Sector eliminado.','ok');
+function eliminarSec(s) {
+  const n = links.filter(l=>l.sector===s).length;
+  if(n && !confirm(`"${s}" tiene ${n} acceso(s). ¿Eliminás igual?`)) return;
+  sectores = sectores.filter(x => x !== s);
+  lsSave(); refreshAll(); toast('Sector eliminado.','ok');
 }
-async function moverSector(i,dir){
-  const j=i+dir; if(j<0||j>=sectores.length)return;
-  [sectores[i],sectores[j]]=[sectores[j],sectores[i]];
-  await saveAll(); refreshAll();
+function moverSec(i, dir) {
+  const j = i+dir; if(j<0||j>=sectores.length) return;
+  [sectores[i],sectores[j]] = [sectores[j],sectores[i]];
+  lsSave(); refreshAll();
 }
 
-// ══════════════════════════════════════════════════════════
-// TOAST
-// ══════════════════════════════════════════════════════════
-function toast(msg,type='ok'){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast show '+(type||'ok');
-  setTimeout(()=>t.classList.remove('show'),2800);
+// ── TOAST ──
+function toast(msg, type='ok') {
+  const t = document.getElementById('toast');
+  const icons = {ok:'✓', err:'✕', warn:'⚠'};
+  t.innerHTML = `<span>${icons[type]||'✓'}</span> ${msg}`;
+  t.className = `toast show ${type}`;
+  setTimeout(() => t.classList.remove('show'), 2800);
 }
 </script>
 
