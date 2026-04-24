@@ -37,15 +37,6 @@
       "dest": false
     },
     {
-      "id": 10,
-      "s": "RRHH",
-      "n": "Liquidaciones de Sueldo",
-      "d": "Carpeta con recibos de sueldo mensuales.",
-      "t": "carpeta",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 11,
       "s": "RRHH",
       "n": "Reglamento Interno",
