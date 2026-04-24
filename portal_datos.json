@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 14,
-      "s": "Calidad",
-      "n": "Registro de No Conformidades",
-      "d": "Excel de seguimiento de no conformidades abiertas.",
-      "t": "excel",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 15,
       "s": "AdministraciÃÂ³n",
       "n": "Presupuesto Anual",
