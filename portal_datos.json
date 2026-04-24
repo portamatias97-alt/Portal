@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 7,
-      "s": "Compras",
-      "n": "Carpeta Contratos",
-      "d": "Directorio con contratos vigentes de proveedores.",
-      "t": "carpeta",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 11,
       "s": "RRHH",
       "n": "Reglamento Interno",
