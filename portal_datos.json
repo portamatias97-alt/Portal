@@ -19,15 +19,6 @@
       "dest": false
     },
     {
-      "id": 8,
-      "s": "IngenierÃÂ­a",
-      "n": "Planos de Planta",
-      "d": "Carpeta con planos actualizados de instalaciones.",
-      "t": "carpeta",
-      "u": "#",
-      "dest": true
-    },
-    {
       "id": 11,
       "s": "RRHH",
       "n": "Reglamento Interno",
