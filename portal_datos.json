@@ -28,15 +28,6 @@
       "dest": true
     },
     {
-      "id": 9,
-      "s": "IngenierÃÂ­a",
-      "n": "Especificaciones TÃÂ©cnicas",
-      "d": "Documento con especificaciones de proyectos en curso.",
-      "t": "word",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 11,
       "s": "RRHH",
       "n": "Reglamento Interno",
