@@ -1,0 +1,175 @@
+{
+  "sectores": [
+    "Producción",
+    "Mantenimiento",
+    "Compras",
+    "Ingeniería",
+    "RRHH",
+    "Calidad",
+    "Administración"
+  ],
+  "links": [
+    {
+      "id": 1,
+      "s": "Producción",
+      "n": "Plan de Producción Mensual",
+      "d": "Planilla Excel con cronograma y metas del mes.",
+      "t": "excel",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 2,
+      "s": "Producción",
+      "n": "Registro de Órdenes de Trabajo",
+      "d": "Historial de órdenes activas e históricas de planta.",
+      "t": "excel",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 3,
+      "s": "Mantenimiento",
+      "n": "Plan de Mantenimiento Preventivo",
+      "d": "Calendario anual de mantenimientos programados.",
+      "t": "excel",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 4,
+      "s": "Mantenimiento",
+      "n": "Manual de Equipos",
+      "d": "PDF con manuales técnicos de los equipos principales.",
+      "t": "pdf",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 5,
+      "s": "Compras",
+      "n": "Solicitudes de Compra Activas",
+      "d": "Seguimiento de solicitudes pendientes de aprobación.",
+      "t": "excel",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 6,
+      "s": "Compras",
+      "n": "Listado de Proveedores",
+      "d": "Base de datos de proveedores habilitados.",
+      "t": "word",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 7,
+      "s": "Compras",
+      "n": "Carpeta Contratos",
+      "d": "Directorio con contratos vigentes de proveedores.",
+      "t": "carpeta",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 8,
+      "s": "Ingeniería",
+      "n": "Planos de Planta",
+      "d": "Carpeta con planos actualizados de instalaciones.",
+      "t": "carpeta",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 9,
+      "s": "Ingeniería",
+      "n": "Especificaciones Técnicas",
+      "d": "Documento con especificaciones de proyectos en curso.",
+      "t": "word",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 10,
+      "s": "RRHH",
+      "n": "Liquidaciones de Sueldo",
+      "d": "Carpeta con recibos de sueldo mensuales.",
+      "t": "carpeta",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 11,
+      "s": "RRHH",
+      "n": "Reglamento Interno",
+      "d": "PDF con el reglamento interno de la empresa.",
+      "t": "pdf",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 12,
+      "s": "RRHH",
+      "n": "Planilla de Asistencia",
+      "d": "Registro mensual de asistencia del personal.",
+      "t": "excel",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 13,
+      "s": "Calidad",
+      "n": "Procedimientos ISO",
+      "d": "Carpeta con procedimientos del sistema de gestión.",
+      "t": "carpeta",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 14,
+      "s": "Calidad",
+      "n": "Registro de No Conformidades",
+      "d": "Excel de seguimiento de no conformidades abiertas.",
+      "t": "excel",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 15,
+      "s": "Administración",
+      "n": "Presupuesto Anual",
+      "d": "Excel con el presupuesto corporativo del ejercicio.",
+      "t": "excel",
+      "u": "#",
+      "dest": true
+    },
+    {
+      "id": 16,
+      "s": "Administración",
+      "n": "Carpeta Facturación",
+      "d": "Facturas emitidas y recibidas del mes.",
+      "t": "carpeta",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 17,
+      "s": "Administración",
+      "n": "Informe de Gestión",
+      "d": "PDF con el informe de gestión trimestral.",
+      "t": "pdf",
+      "u": "#",
+      "dest": false
+    },
+    {
+      "id": 18,
+      "s": "Mantenimiento",
+      "n": "Seguimiento presupuestos Intelmec",
+      "d": "Status cotizaciones",
+      "t": "excel",
+      "u": "https://portahnos.sharepoint.com/:x:/r/sites/Porta-Mantenimiento/Documentos%20compartidos/General/PORTA%20INGENIERIA/2%20-%20Mantenimiento/42%20-%20SEGUIMIENTO%20COTIZACIONES%20INTELMEC/SEGUIMIENTO%20COTIZACIONES%20INTELMEC%20-%202026.xlsx?d=w09474213a5c844b7843e907a4d4bdcf7&csf=1&web=1&e=7eQc39",
+      "dest": true
+    }
+  ]
+}
