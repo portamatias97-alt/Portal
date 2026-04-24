@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 13,
-      "s": "Calidad",
-      "n": "Procedimientos ISO",
-      "d": "Carpeta con procedimientos del sistema de gestiÃÂ³n.",
-      "t": "carpeta",
-      "u": "#",
-      "dest": true
-    },
-    {
       "id": 14,
       "s": "Calidad",
       "n": "Registro de No Conformidades",
