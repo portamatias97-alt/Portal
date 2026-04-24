@@ -37,15 +37,6 @@
       "dest": true
     },
     {
-      "id": 4,
-      "s": "Mantenimiento",
-      "n": "Manual de Equipos",
-      "d": "PDF con manuales tÃ©cnicos de los equipos principales.",
-      "t": "pdf",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 5,
       "s": "Compras",
       "n": "Solicitudes de Compra Activas",
