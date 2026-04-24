@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 11,
-      "s": "RRHH",
-      "n": "Reglamento Interno",
-      "d": "PDF con el reglamento interno de la empresa.",
-      "t": "pdf",
-      "u": "#",
-      "dest": true
-    },
-    {
       "id": 12,
       "s": "RRHH",
       "n": "Planilla de Asistencia",
