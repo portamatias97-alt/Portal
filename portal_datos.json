@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 6,
-      "s": "Compras",
-      "n": "Listado de Proveedores",
-      "d": "Base de datos de proveedores habilitados.",
-      "t": "word",
-      "u": "#",
-      "dest": false
-    },
-    {
       "id": 7,
       "s": "Compras",
       "n": "Carpeta Contratos",
