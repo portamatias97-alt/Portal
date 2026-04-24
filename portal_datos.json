@@ -1,18 +1,18 @@
 {
   "sectores": [
-    "Producción",
+    "ProducciÃ³n",
     "Mantenimiento",
     "Compras",
-    "Ingeniería",
+    "IngenierÃ­a",
     "RRHH",
     "Calidad",
-    "Administración"
+    "AdministraciÃ³n"
   ],
   "links": [
     {
       "id": 1,
-      "s": "Producción",
-      "n": "Plan de Producción Mensual",
+      "s": "ProducciÃ³n",
+      "n": "Plan de ProducciÃ³n Mensual",
       "d": "Planilla Excel con cronograma y metas del mes.",
       "t": "excel",
       "u": "#",
@@ -20,9 +20,9 @@
     },
     {
       "id": 2,
-      "s": "Producción",
-      "n": "Registro de Órdenes de Trabajo",
-      "d": "Historial de órdenes activas e históricas de planta.",
+      "s": "ProducciÃ³n",
+      "n": "Registro de Ãrdenes de Trabajo",
+      "d": "Historial de Ã³rdenes activas e histÃ³ricas de planta.",
       "t": "excel",
       "u": "#",
       "dest": false
@@ -40,7 +40,7 @@
       "id": 4,
       "s": "Mantenimiento",
       "n": "Manual de Equipos",
-      "d": "PDF con manuales técnicos de los equipos principales.",
+      "d": "PDF con manuales tÃ©cnicos de los equipos principales.",
       "t": "pdf",
       "u": "#",
       "dest": false
@@ -49,7 +49,7 @@
       "id": 5,
       "s": "Compras",
       "n": "Solicitudes de Compra Activas",
-      "d": "Seguimiento de solicitudes pendientes de aprobación.",
+      "d": "Seguimiento de solicitudes pendientes de aprobaciÃ³n.",
       "t": "excel",
       "u": "#",
       "dest": true
@@ -74,7 +74,7 @@
     },
     {
       "id": 8,
-      "s": "Ingeniería",
+      "s": "IngenierÃ­a",
       "n": "Planos de Planta",
       "d": "Carpeta con planos actualizados de instalaciones.",
       "t": "carpeta",
@@ -83,8 +83,8 @@
     },
     {
       "id": 9,
-      "s": "Ingeniería",
-      "n": "Especificaciones Técnicas",
+      "s": "IngenierÃ­a",
+      "n": "Especificaciones TÃ©cnicas",
       "d": "Documento con especificaciones de proyectos en curso.",
       "t": "word",
       "u": "#",
@@ -121,7 +121,7 @@
       "id": 13,
       "s": "Calidad",
       "n": "Procedimientos ISO",
-      "d": "Carpeta con procedimientos del sistema de gestión.",
+      "d": "Carpeta con procedimientos del sistema de gestiÃ³n.",
       "t": "carpeta",
       "u": "#",
       "dest": true
@@ -137,7 +137,7 @@
     },
     {
       "id": 15,
-      "s": "Administración",
+      "s": "AdministraciÃ³n",
       "n": "Presupuesto Anual",
       "d": "Excel con el presupuesto corporativo del ejercicio.",
       "t": "excel",
@@ -146,8 +146,8 @@
     },
     {
       "id": 16,
-      "s": "Administración",
-      "n": "Carpeta Facturación",
+      "s": "AdministraciÃ³n",
+      "n": "Carpeta FacturaciÃ³n",
       "d": "Facturas emitidas y recibidas del mes.",
       "t": "carpeta",
       "u": "#",
@@ -155,9 +155,9 @@
     },
     {
       "id": 17,
-      "s": "Administración",
-      "n": "Informe de Gestión",
-      "d": "PDF con el informe de gestión trimestral.",
+      "s": "AdministraciÃ³n",
+      "n": "Informe de GestiÃ³n",
+      "d": "PDF con el informe de gestiÃ³n trimestral.",
       "t": "pdf",
       "u": "#",
       "dest": false
@@ -169,6 +169,15 @@
       "d": "Status cotizaciones",
       "t": "excel",
       "u": "https://portahnos.sharepoint.com/:x:/r/sites/Porta-Mantenimiento/Documentos%20compartidos/General/PORTA%20INGENIERIA/2%20-%20Mantenimiento/42%20-%20SEGUIMIENTO%20COTIZACIONES%20INTELMEC/SEGUIMIENTO%20COTIZACIONES%20INTELMEC%20-%202026.xlsx?d=w09474213a5c844b7843e907a4d4bdcf7&csf=1&web=1&e=7eQc39",
+      "dest": true
+    },
+    {
+      "id": 19,
+      "s": "Mantenimiento",
+      "n": "CUADRO DE MANDO KPI",
+      "d": "KPI MTTO",
+      "t": "excel",
+      "u": "https://app.powerbi.com/groups/me/reports/f7e5cb9d-4376-4f6e-9872-7e9f682df4ef/8b15b132e4b25e7c5acf?ctid=f66d6141-d0e8-45b9-b079-8c820291f67b&experience=power-bi",
       "dest": true
     }
   ]
