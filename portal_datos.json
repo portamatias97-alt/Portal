@@ -1,18 +1,18 @@
 {
   "sectores": [
-    "ProducciÃ³n",
+    "ProducciÃÂ³n",
     "Mantenimiento",
     "Compras",
-    "IngenierÃ­a",
+    "IngenierÃÂ­a",
     "RRHH",
     "Calidad",
-    "AdministraciÃ³n"
+    "AdministraciÃÂ³n"
   ],
   "links": [
     {
       "id": 1,
-      "s": "ProducciÃ³n",
-      "n": "Plan de ProducciÃ³n Mensual",
+      "s": "ProducciÃÂ³n",
+      "n": "Plan de ProducciÃÂ³n Mensual",
       "d": "Planilla Excel con cronograma y metas del mes.",
       "t": "excel",
       "u": "#",
@@ -20,27 +20,18 @@
     },
     {
       "id": 2,
-      "s": "ProducciÃ³n",
-      "n": "Registro de Ãrdenes de Trabajo",
-      "d": "Historial de Ã³rdenes activas e histÃ³ricas de planta.",
+      "s": "ProducciÃÂ³n",
+      "n": "Registro de ÃÂrdenes de Trabajo",
+      "d": "Historial de ÃÂ³rdenes activas e histÃÂ³ricas de planta.",
       "t": "excel",
       "u": "#",
       "dest": false
     },
     {
-      "id": 3,
-      "s": "Mantenimiento",
-      "n": "Plan de Mantenimiento Preventivo",
-      "d": "Calendario anual de mantenimientos programados.",
-      "t": "excel",
-      "u": "#",
-      "dest": true
-    },
-    {
       "id": 5,
       "s": "Compras",
       "n": "Solicitudes de Compra Activas",
-      "d": "Seguimiento de solicitudes pendientes de aprobaciÃ³n.",
+      "d": "Seguimiento de solicitudes pendientes de aprobaciÃÂ³n.",
       "t": "excel",
       "u": "#",
       "dest": true
@@ -65,7 +56,7 @@
     },
     {
       "id": 8,
-      "s": "IngenierÃ­a",
+      "s": "IngenierÃÂ­a",
       "n": "Planos de Planta",
       "d": "Carpeta con planos actualizados de instalaciones.",
       "t": "carpeta",
@@ -74,8 +65,8 @@
     },
     {
       "id": 9,
-      "s": "IngenierÃ­a",
-      "n": "Especificaciones TÃ©cnicas",
+      "s": "IngenierÃÂ­a",
+      "n": "Especificaciones TÃÂ©cnicas",
       "d": "Documento con especificaciones de proyectos en curso.",
       "t": "word",
       "u": "#",
@@ -112,7 +103,7 @@
       "id": 13,
       "s": "Calidad",
       "n": "Procedimientos ISO",
-      "d": "Carpeta con procedimientos del sistema de gestiÃ³n.",
+      "d": "Carpeta con procedimientos del sistema de gestiÃÂ³n.",
       "t": "carpeta",
       "u": "#",
       "dest": true
@@ -128,7 +119,7 @@
     },
     {
       "id": 15,
-      "s": "AdministraciÃ³n",
+      "s": "AdministraciÃÂ³n",
       "n": "Presupuesto Anual",
       "d": "Excel con el presupuesto corporativo del ejercicio.",
       "t": "excel",
@@ -137,8 +128,8 @@
     },
     {
       "id": 16,
-      "s": "AdministraciÃ³n",
-      "n": "Carpeta FacturaciÃ³n",
+      "s": "AdministraciÃÂ³n",
+      "n": "Carpeta FacturaciÃÂ³n",
       "d": "Facturas emitidas y recibidas del mes.",
       "t": "carpeta",
       "u": "#",
@@ -146,9 +137,9 @@
     },
     {
       "id": 17,
-      "s": "AdministraciÃ³n",
-      "n": "Informe de GestiÃ³n",
-      "d": "PDF con el informe de gestiÃ³n trimestral.",
+      "s": "AdministraciÃÂ³n",
+      "n": "Informe de GestiÃÂ³n",
+      "d": "PDF con el informe de gestiÃÂ³n trimestral.",
       "t": "pdf",
       "u": "#",
       "dest": false
