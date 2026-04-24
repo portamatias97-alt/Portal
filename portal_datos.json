@@ -10,15 +10,6 @@
   ],
   "links": [
     {
-      "id": 15,
-      "s": "AdministraciÃÂ³n",
-      "n": "Presupuesto Anual",
-      "d": "Excel con el presupuesto corporativo del ejercicio.",
-      "t": "excel",
-      "u": "#",
-      "dest": true
-    },
-    {
       "id": 16,
       "s": "AdministraciÃÂ³n",
       "n": "Carpeta FacturaciÃÂ³n",
