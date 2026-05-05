@@ -4,9 +4,9 @@
     "RRHH",
     "Calidad",
     "Compras",
-    "IngenierÃÂ­a",
-    "AdministraciÃÂ³n",
-    "ProducciÃ³n"
+    "IngenierÃÂÃÂ­a",
+    "AdministraciÃÂÃÂ³n",
+    "ProducciÃÂ³n"
   ],
   "links": [
     {
@@ -34,6 +34,15 @@
       "d": "Turnos de tecnicos",
       "t": "excel",
       "u": "https://portahnos.sharepoint.com/:x:/r/sites/Porta-Mantenimiento/Documentos%20compartidos/General/PORTA%20INGENIERIA/2%20-%20Mantenimiento/02%20-%20Capital%20Humano/01%20-%20Gesti%C3%B3n%20de%20Horas/02%20-%20Turnos%20y%20sectores%20de%20personal/00-Turnero/Turnero%202025.xlsx?d=w2ab6694861754d5db5b35fa31369b0bf&csf=1&web=1&e=23Yppd",
+      "dest": false
+    },
+    {
+      "id": 21,
+      "s": "Mantenimiento",
+      "n": "Cos Fi",
+      "d": "Calculadora de Cos de fi",
+      "t": "excel",
+      "u": "https://factor-power-calc--portamatias97.replit.app/",
       "dest": false
     }
   ]
